@@ -1,5 +1,5 @@
 {
-  "name": "mariomultiverseadventures",
+  "name": "mario-multiverse-adventures",
   "version": "1.0.0",
   "dependencies": [
     "opengl",

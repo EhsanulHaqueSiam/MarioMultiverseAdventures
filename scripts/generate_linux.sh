@@ -1,5 +1,10 @@
 #!/bin/bash
-mkdir -p build
-cd build
-cmake .. -DCMAKE_TOOLCHAIN_FILE=../external/vcpkg/scripts/buildsystems/vcpkg.cmake
-make
+
+# Ensure script exits on error
+set -e
+
+# Generate build files
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \ 
+    -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
+
+echo "Build files generated for Linux/MacOS."
