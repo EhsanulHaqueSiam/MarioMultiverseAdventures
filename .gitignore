@@ -38,7 +38,6 @@ MarioMultiverseAdventures
 *.lib
 *.dll
 *.so
-*.dylib
 *.exe
 
 # IDEs and editor directories
@@ -49,21 +48,12 @@ MarioMultiverseAdventures
 *.vcxproj*
 *.xcodeproj
 
-# VS Code workspace settings (optional)
-.vscode/
-
-# Neovim swap files
-*.swp
-
 # macOS specific
 .DS_Store
 
 # Windows specific
 Thumbs.db
 ehthumbs.db
-
-# Linux specific
-*.bak
 
 # Asset cache
 /assets/cache/
@@ -82,8 +72,6 @@ libGL.so
 libGLEW.so
 libGLU.so
 *.dylib
-*.lib
-*.a
 
 # Build files specific to OpenGL-based projects (if using external tools)
 /external/assets/

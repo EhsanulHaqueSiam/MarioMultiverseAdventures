@@ -14,7 +14,6 @@ find_package(GLUT REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
-
 # Include directories
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
@@ -27,8 +26,7 @@ file(GLOB_RECURSE HEADERS ${CMAKE_SOURCE_DIR}/include/*.h)
 
 # Executable target
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS}
-        src/main.cpp
-        src/main.h)
+        src/Coin.cpp)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} OpenGL::GL GLUT::GLUT GLEW::GLEW glm::glm)
