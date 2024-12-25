@@ -12,9 +12,6 @@
 #include "menu.h"
 #include "../include/main.h"
 
-
-
-
 //Main Function
 int main(int argc, char **argv) {
     glutInit(&argc, argv);

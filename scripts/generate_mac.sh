@@ -15,8 +15,8 @@ if [ -d "build" ]; then
 fi
 
 # Generate build files
-cmake -S . -B build -G "Unix Makefiles" \
+cmake -S . -B build -G "Xcode" \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
 
-echo "Build files generated for Linux."
+echo "Build files generated for macOS."

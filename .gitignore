@@ -17,12 +17,12 @@ MarioMultiverseAdventures
 /cmake-build-debug/*.log
 
 # CMake query and cache files
-/.cmake/api.v1/query/cache-v2
-/.cmake/api.v1/query/cache-v2-*.json
-/.cmake/api.v1/query/cmakeFiles-v1
-/.cmake/api.v1/query/index-*.json
-/.cmake/api.v1/query/toolchain-v1
-/.cmake/api.v1/query/vpkg-manifest-install.log
+/.cmake/api/v1/query/cache-v2
+/.cmake/api/v1/query/cache-v2-*.json
+/.cmake/api/v1/query/cmakeFiles-v1
+/.cmake/api/v1/query/index-*.json
+/.cmake/api/v1/query/toolchain-v1
+/.cmake/api/v1/query/vpkg-manifest-install.log
 
 # External dependencies (e.g., vcpkg)
 /vcpkg_installed/
@@ -42,7 +42,7 @@ MarioMultiverseAdventures
 
 # IDEs and editor directories
 .idea/
-.vscode/
+/.vscode/
 *.iml
 *.sln
 *.vcxproj*
@@ -77,3 +77,7 @@ libGLU.so
 /external/assets/
 *.asset
 .ninja_deps
+
+# CPack generated files
+/CPackConfig.cmake
+/CPackSourceConfig.cmake
