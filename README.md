@@ -7,38 +7,82 @@ This project is a C++ game called MarioMultiverseAdventures. It uses OpenGL, GLU
 - CMake 3.16 or higher
 - vcpkg (for managing dependencies)
 - Git
+- Ninja Build tools (if VSCode is used)
+
+## Installing Ninja Build Tools on Windows and Adding to Environment Path (for VSCode)
+
+1. **Download Ninja Build Tools:**
+   - Go to the official Ninja releases page: [Ninja Releases](https://github.com/ninja-build/ninja/releases)
+   - Download the latest `ninja-win.zip` file.
+
+2. **Extract the Zip File:**
+   - Extract the contents of the `ninja-win.zip` file to a directory of your choice, e.g., `C:\ninja`.
+
+3. **Add Ninja to the System PATH:**
+   - Open the Start Menu and search for "Environment Variables".
+   - Click on "Edit the system environment variables".
+   - In the System Properties window, click on the "Environment Variables" button.
+   - In the Environment Variables window, find the "Path" variable in the "System variables" section and select it.
+   - Click on the "Edit" button.
+   - In the Edit Environment Variable window, click on the "New" button and add the path to the directory where you extracted Ninja, e.g., `C:\ninja`.
+   - Click "OK" to close all windows.
+
+4. **Verify the Installation:**
+   - Open a new Command Prompt window.
+   - Type `ninja --version` and press Enter.
+   - You should see the version of Ninja printed, indicating that it is correctly installed and added to the PATH.
 
 ## Cloning the Repository
 1. Open a terminal or command prompt.
 2. Clone the repository:
     ```sh
-    git clone https://github.com/EhsanulHaqueSiam/MarioMultiverseAdventures.git
+    git clone --recurse-submodules https://github.com/EhsanulHaqueSiam/MarioMultiverseAdventures.git
     cd MarioMultiverseAdventures
     ```
-   
-or if you have ssh setup in your github account then you can clone the repository using the following command:
-```sh
-git clone git@github.com:EhsanulHaqueSiam/MarioMultiverseAdventures.git
-cd MarioMultiverseAdventures
-```
+
+   or if you have SSH set up in your GitHub account, you can clone the repository using the following command:
+    ```sh
+    git clone --recurse-submodules git@github.com:EhsanulHaqueSiam/MarioMultiverseAdventures.git
+    cd MarioMultiverseAdventures
+    ```
 
 ## Setting Up vcpkg
-1. Clone the vcpkg repository:
+1. **Setup vcpkg (Linux or macOS):**
     ```sh
     git clone https://github.com/microsoft/vcpkg.git
-    cd vcpkg
+    cd external/vcpkg
     ./bootstrap-vcpkg.sh
     ```
 
-2. Add vcpkg to your PATH:
+   **Setup vcpkg (Windows PowerShell):**
+    ```sh
+    git clone https://github.com/microsoft/vcpkg.git
+    cd external/vcpkg
+    ./bootstrap-vcpkg.bat
+    ```
+
+2. **Add vcpkg to your PATH:**
+   - **Temporary:**
     ```sh
     export VCPKG_ROOT=$(pwd)
     export PATH=$VCPKG_ROOT:$PATH
     ```
+   - **Permanent:**
+     Set the environment variable `VCPKG_ROOT` to the path of the vcpkg directory and add the vcpkg directory to the PATH environment variable. For Linux, you can add it to `.bashrc` or `.zshrc` file, and for Windows, you can add it to the environment variable. For macOS, you can add it to the `.zshrc` file.
 
-3. Install the required libraries:
+   For Windows, an extra step is needed to integrate vcpkg with Visual Studio:
     ```sh
-    vcpkg install opengl freeglut glew glm
+    vcpkg integrate install
+    ```
+
+3. **Install the required libraries:**
+   Navigate to the project directory (MarioMultiverseAdventures):
+    ```sh
+    cd ../..
+    ```
+   Then run the following command:
+    ```sh
+    vcpkg install
     ```
 
 ## CLion Setup
@@ -50,6 +94,10 @@ cd MarioMultiverseAdventures
     ```
 4. Click `Apply` and `OK`.
 5. Click the `Reload CMake Project` button.
+
+## CLion Setup (Alternative)
+1. Go to `View` > `Tool Windows` > `Vcpkg`.
+2. Hit the `+` button, a window will pop up. Add Vcpkg Repository and select `OK`.
 
 ## Xcode Setup (macOS)
 1. Open Terminal and navigate to the project directory.
@@ -78,10 +126,10 @@ cd MarioMultiverseAdventures
 ## VSCode Setup
 1. Open VSCode and select `Open Folder` to open the project directory.
 2. Ensure the `.vscode` directory contains the following files:
-    - `settings.json`
-    - `tasks.json`
-    - `launch.json`
-    - `CMakePresets.json`
+   - `settings.json`
+   - `tasks.json`
+   - `launch.json`
+   - `CMakePresets.json`
 3. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and run `CMake: Configure`.
 4. Build the project by running the `CMake: build` task.
 5. Start debugging by running the `Debug` configuration.
