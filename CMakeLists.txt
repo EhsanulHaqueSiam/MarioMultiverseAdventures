@@ -26,9 +26,7 @@ file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 file(GLOB_RECURSE HEADERS ${CMAKE_SOURCE_DIR}/include/*.h)
 
 # Executable target
-add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS}
-        src/main.cpp
-        src/main.h)
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} OpenGL::GL GLUT::GLUT GLEW::GLEW glm::glm)
