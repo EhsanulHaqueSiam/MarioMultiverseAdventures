@@ -57,12 +57,19 @@ inline void displayMenu() {// Draw background rectangle
     glEnd();
 
     // Render menu text
-    renderText("Mario Adventure", 560, 500, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Mario Multiverse Adventure", 560, 500, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     renderText("START NEW GAME", 532, 420, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     renderText("Press 'Space' to Start New Game", 475, 380, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-
-    renderText("Press '2' to Start STAGE 02", 500, 350, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Press '3' to Start STAGE 03", 500, 320, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    //TODO: Press "1" to start level 1
+    //TODO: When win go to next level
+    //TODO: When lose go to game over screen
+    //TODO: Press "Esc" to exit the game
+    //TODO: when loose come back to main menu
+    //TODO: Use the arrow keys to navigate through the game.
+    //TODO: Add description of the game
+    //TODO: delete stage 1 and stage 3 and add a new stage and bind keybindings to it
+    renderText("Press '2' to Start Level 2", 500, 350, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Press '3' to Start Level 3", 500, 320, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
 
     // Render credits
     renderText("Md Ehsanul Haque (22-49370-3)", 420, 160, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);

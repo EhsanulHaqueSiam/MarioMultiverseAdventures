@@ -12,8 +12,11 @@
 #include "menu.h"
 #include "../include/main.h"
 
+#include "FlappyBird.h"
+
 //Main Function
 int main(int argc, char **argv) {
+    // startGame(argc, argv);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowSize(windowFinalX, windowFinalY);
