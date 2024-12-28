@@ -10,16 +10,16 @@ Coin::Coin(float x, float y, float radius, float red, float green, float blue)
 // Function to draw the coin using OpenGL
 void Coin::draw() const {
     if (isActive && !isCollected) {
-        const int triangleAmount = 100;
-        const float twicePi = 2.0f * PI;
+        constexpr int triangleAmount = 100;
+        constexpr float twicePi = 2.0f * PI;
 
         // Draw outer circle
         glColor3ub(255, 215, 0);
         glBegin(GL_TRIANGLE_FAN);
         glVertex2f(x, y);
         for (int i = 0; i <= triangleAmount; ++i) {
-            glVertex2f(x + (radius * cos(i * twicePi / triangleAmount)),
-                       y + (radius * sin(i * twicePi / triangleAmount)));
+            glVertex2f(x + (radius * std::cos(i * twicePi / triangleAmount)),
+                       y + (radius * std::sin(i * twicePi / triangleAmount)));
         }
         glEnd();
 
@@ -28,16 +28,16 @@ void Coin::draw() const {
         glColor3f(0.0f, 0.0f, 0.0f);
         glBegin(GL_LINE_LOOP);
         for (int i = 0; i <= triangleAmount; ++i) {
-            glVertex2f(x + (radius / 2 * cos(i * twicePi / triangleAmount)),
-                       y + (radius / 2 * sin(i * twicePi / triangleAmount)));
+            glVertex2f(x + (radius / 2 * std::cos(i * twicePi / triangleAmount)),
+                       y + (radius / 2 * std::sin(i * twicePi / triangleAmount)));
         }
         glEnd();
 
         // Draw outer black line
         glBegin(GL_LINE_LOOP);
         for (int i = 0; i <= triangleAmount; ++i) {
-            glVertex2f(x + (radius * cos(i * twicePi / triangleAmount)),
-                       y + (radius * sin(i * twicePi / triangleAmount)));
+            glVertex2f(x + (radius * std::cos(i * twicePi / triangleAmount)),
+                       y + (radius * std::sin(i * twicePi / triangleAmount)));
         }
         glEnd();
     }

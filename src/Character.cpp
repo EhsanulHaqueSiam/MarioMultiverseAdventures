@@ -10,11 +10,11 @@ Character::Character(float initialX, float initialY)
 // Setters
 void Character::setX(float x) { this->x = x; }
 void Character::setY(float y) { this->y = y; }
-void Character::setJumpVelocity(float velocity) { jumpVelocity = velocity; }
-void Character::setCurrentJumpVelocity(float velocity) { currentJumpVelocity = velocity; }
-void Character::setCharacterDead(bool dead) { isDead = dead; }
-void Character::setJumping(bool jump) { isJumping = jump; }
-void Character::setSpeed(float speed) { this->speed = speed; }
+void Character::setJumpVelocity(const float velocity) { jumpVelocity = velocity; }
+void Character::setCurrentJumpVelocity(const float velocity) { currentJumpVelocity = velocity; }
+void Character::setCharacterDead(const bool dead) { isDead = dead; }
+void Character::setJumping(const bool jump) { isJumping = jump; }
+void Character::setSpeed(const float speed) { this->speed = speed; }
 
 // Getters
 float Character::getJumpVelocity() const { return jumpVelocity; }
@@ -309,7 +309,7 @@ void Character::draw() const {
         glEnd();
 }
 
-void Character::specialKeyPressed(int key, int x, int y) {
+void Character::specialKeyPressed(const int key, int x, int y) {
     switch (key) {
         case GLUT_KEY_LEFT:
             moveLeftFlag = true;
@@ -330,7 +330,7 @@ void Character::specialKeyPressed(int key, int x, int y) {
     }
 }
 
-void Character::specialKeyReleased(int key, int x, int y) {
+void Character::specialKeyReleased(const int key, int x, int y) {
     switch (key) {
         case GLUT_KEY_LEFT:
             moveLeftFlag = false;

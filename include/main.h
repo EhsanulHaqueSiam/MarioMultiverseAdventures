@@ -146,7 +146,7 @@ inline void drawScoreboard(const int characterX) {
 
 
 //Function to show Lives
-inline void drawLives(int characterX) {
+inline void drawLives(const int characterX) {
     const int livesX = characterX - windowFinalX / 2;
     constexpr int livesY = 40; // Adjust this as needed
 
@@ -243,15 +243,13 @@ inline void update(int value) {
     std::cout << "Character X: " << playerCharacter.getX() << ", Character Y: " << playerCharacter.getY() << std::endl;
 
     // Check for collision with obstacles and handle accordingly
-    bool isObstacleCollision = checkAllObstacleCollisions(playerCharacter);
-    if (isObstacleCollision) {
+    if (checkAllObstacleCollisions(playerCharacter)) {
         // Restore the previous character position
         playerCharacter.setX(prevCharacterX);
     }
 
     // Check for collision with the river, and handle accordingly
-    bool isRiverColliding = checkAllRiverCollisions(playerCharacter);
-    if (isRiverColliding && !playerCharacter.isCharacterDead()) {
+    if (const bool isRiverColliding = checkAllRiverCollisions(playerCharacter); isRiverColliding && !playerCharacter.isCharacterDead()) {
         playerCharacter.setY(playerCharacter.getY() - gravity);
         playerCharacter.isDead = true;
         glutTimerFunc(10, respawnCharacter, 0);
@@ -287,8 +285,8 @@ inline void update(int value) {
         playerCharacter.setY(playerCharacter.getY() - gravity * 5);
 
         // Check for collision with obstacles or River below the character
-        bool isOnObstacle = checkAllObstacleCollisions(playerCharacter);
-        bool isOnRiver = checkAllRiverCollisions(playerCharacter);
+        const bool isOnObstacle = checkAllObstacleCollisions(playerCharacter);
+        const bool isOnRiver = checkAllRiverCollisions(playerCharacter);
 
         if (isOnObstacle) {
             // If on top of an obstacle, adjust the vertical position to stay on top

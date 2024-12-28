@@ -141,13 +141,13 @@ inline void displayFlappy() {
     if (game_over) {
         glColor3f(1.0, 0.0, 0.0);
         glRasterPos2f(window_width / 2 - 50, window_height / 2);
-        const char* message = "GAME OVER";
+        const auto message = "GAME OVER";
         for (int i = 0; message[i] != '\0'; i++) {
             glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, message[i]);
         }
         glColor3f(1.0, 1.0, 1.0);
         glRasterPos2f(window_width / 2 - 80, window_height / 2 - 40);
-        const char* restart_msg = "Press ENTER to Restart";
+        const auto restart_msg = "Press ENTER to Restart";
         for (int i = 0; restart_msg[i] != '\0'; i++) {
             glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, restart_msg[i]);
         }
@@ -188,7 +188,7 @@ inline void keyboard(const unsigned char key, int x, int y) {
 }
 
 // Function to handle special key input (up arrow for jumping)
-inline void special_keyboard(int key, int x, int y) {
+inline void special_keyboard(const int key, int x, int y) {
     if (key == GLUT_KEY_UP && !game_over) {
         is_jumping = true;
     }

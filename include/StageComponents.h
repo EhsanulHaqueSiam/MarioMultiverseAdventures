@@ -91,7 +91,7 @@ inline void drawCloud(float x, float y) {
 }
 
 // Function to draw the ground (bricks and lines)
-inline void drawGround(float maxXPosition) {
+inline void drawGround(const float maxXPosition) {
     glPushMatrix(); // Save the current matrix state
     glTranslatef(0.0f, 0.0f, 0.0f); // Adjust the translation if needed
 
