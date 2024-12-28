@@ -35,7 +35,7 @@ void Character::draw() const {
         // Implementation of draw function
     glColor3f(0.5f, 0.5f, 0.5f); // Set character color to gray
 
-        /*glBegin(GL_QUADS);
+        /*glBegin(GL_QUADS); // Draw the a square
         glVertex2f(x, y);
         glVertex2f(x + size, y);
         glVertex2f(x + size, y + size);
