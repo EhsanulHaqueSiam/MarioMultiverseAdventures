@@ -16,29 +16,30 @@
 #include <string>
 
 // Game parameters
-const int window_width = 800;
-const int window_height = 600;
+constexpr int window_width = 800;
+constexpr int window_height = 600;
 float bird_x = 200, bird_y = 300;
 float bird_velocity = 0, bird_gravity = -0.5, bird_lift = 10.0;
-bool is_jumping = false;
-const int max_pipes = 5;
+inline bool is_jumping = false;
+constexpr int max_pipes = 5;
 struct Pipe {
     int x;
     int gap_position;
     bool passed;
 };
-Pipe pipes[max_pipes];
-int pipe_gap = 200;
-int pipe_width = 80;
-float pipe_velocity = -2.0;
+
+inline Pipe pipes[max_pipes];
+inline int pipe_gap = 200;
+inline int pipe_width = 80;
+inline float pipe_velocity = -2.0;
 
 // Game state
-bool game_over = false;
-int num_pipes = 0;
-int scoreFlappy = 0;
+inline bool game_over = false;
+inline int num_pipes = 0;
+inline int scoreFlappy = 0;
 
 // Function to draw the bird
-void draw_bird() {
+inline void draw_bird() {
     glColor3f(1.0, 1.0, 0.0);
     glBegin(GL_QUADS);
     glVertex2f(bird_x - 10, bird_y - 10);
@@ -49,7 +50,7 @@ void draw_bird() {
 }
 
 // Function to draw pipes
-void draw_pipes() {
+inline void draw_pipes() {
     glColor3f(1.0, 1.0, 1.0);
     for (int i = 0; i < num_pipes; i++) {
         glBegin(GL_QUADS);
@@ -68,17 +69,17 @@ void draw_pipes() {
 }
 
 // Function to draw the scoreFlappy
-void draw_score() {
+inline void draw_score() {
     glColor3f(1.0, 1.0, 1.0);
     glRasterPos2f(10, window_height - 30);
     std::string score_text = "Score: " + std::to_string(scoreFlappy);
-    for (char c : score_text) {
+    for (const char c : score_text) {
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c);
     }
 }
 
 // Function to updateFlappy the game state
-void updateFlappy(int value) {
+inline void updateFlappy(int value) {
     if (!game_over) {
         if (is_jumping) {
             bird_velocity = bird_lift;
@@ -134,7 +135,7 @@ void updateFlappy(int value) {
 }
 
 // Function to displayFlappy the game
-void displayFlappy() {
+inline void displayFlappy() {
     glClear(GL_COLOR_BUFFER_BIT);
 
     if (game_over) {
@@ -161,7 +162,7 @@ void displayFlappy() {
 }
 
 // Function to handle keyboard input
-void keyboard(unsigned char key, int x, int y) {
+inline void keyboard(const unsigned char key, int x, int y) {
     if (key == 27) {
         exit(0);
     }
@@ -175,10 +176,10 @@ void keyboard(unsigned char key, int x, int y) {
             scoreFlappy = 0;
             num_pipes = 0;
 
-            for (int i = 0; i < max_pipes; i++) {
-                pipes[i].x = 0;
-                pipes[i].gap_position = 0;
-                pipes[i].passed = false;
+            for (auto &[x, gap_position, passed] : pipes) {
+                x = 0;
+                gap_position = 0;
+                passed = false;
             }
 
             glutPostRedisplay();
@@ -187,20 +188,20 @@ void keyboard(unsigned char key, int x, int y) {
 }
 
 // Function to handle special key input (up arrow for jumping)
-void special_keyboard(int key, int x, int y) {
+inline void special_keyboard(int key, int x, int y) {
     if (key == GLUT_KEY_UP && !game_over) {
         is_jumping = true;
     }
 }
 
 // Function to initialize the game
-void initFlappy() {
+inline void initFlappy() {
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glOrtho(0, window_width, 0, window_height, -1, 1);
 }
 
 // Function to start the game
-void startGame(int argc, char** argv) {
+inline void startGame(int argc, char** argv) {
     srand(time(0));
 
     glutInit(&argc, argv);
