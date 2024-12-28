@@ -1,7 +1,7 @@
-# MarioMultiverseAdventures
+# Mario Multiverse Adventures
 
 ## Overview
-This project is a C++ game called MarioMultiverseAdventures. It uses OpenGL, GLUT, GLEW, and glm libraries. This guide will help you set up the development environment on macOS, Windows, and Linux using CLion, Xcode, Visual Studio, and VSCode.
+This project is a C++ game called MarioMultiverseAdventures. It uses OpenGL, GLUT, GLEW, GLU and glm libraries. This guide will help you set up the development environment on macOS, Windows, and Linux using CLion, Xcode, Visual Studio, and VSCode.
 
 ---
 

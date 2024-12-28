@@ -989,8 +989,8 @@ inline void renderBitmapString(const float x, const float y, const float z, void
 
 //Exit Function
 inline void exit1(int value) {
-    exit(0);
     glutTimerFunc(10, exit1, 0);
+    exit(0);
 }
 
 

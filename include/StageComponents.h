@@ -6,19 +6,19 @@
 #include "GlobalVariables.h"
 
 // Function to draw a hill
-inline void drawHill(float x, float hillHeight, float hillWidth) {
+inline void drawHill(const float x, const float hillHeight, const float hillWidth) {
     glPushMatrix();
     glTranslatef(x, 101.0f, 0.0f);
 
-    const int numPoints = 100;
+    constexpr int numPoints = 100;
     const float step = 2.0f * hillWidth / numPoints;
 
     // Draw the black border around the hill
     glBegin(GL_TRIANGLE_STRIP);
     for (int i = 0; i <= numPoints; ++i) {
-        float t = static_cast<float>(i) / numPoints;
-        float angle = t * 3.14159f;
-        float yOffset = hillHeight * std::sin(angle);
+        const float t = static_cast<float>(i) / numPoints;
+        const float angle = t * 3.14159f;
+        const float yOffset = hillHeight * std::sin(angle);
 
         // Use black color for the border
         glColor3f(0.0f, 0.0f, 0.0f);
@@ -32,9 +32,9 @@ inline void drawHill(float x, float hillHeight, float hillWidth) {
     // Draw the inner hill
     glBegin(GL_TRIANGLE_STRIP);
     for (int i = 0; i <= numPoints; ++i) {
-        float t = static_cast<float>(i) / numPoints;
-        float angle = t * 3.14159f;
-        float yOffset = hillHeight * std::sin(angle);
+        const float t = static_cast<float>(i) / numPoints;
+        const float angle = t * 3.14159f;
+        const float yOffset = hillHeight * std::sin(angle);
 
         // Use green color for the hill
         glColor3f(0.5f, 0.7f, 0.3f);
@@ -50,7 +50,7 @@ inline void drawHill(float x, float hillHeight, float hillWidth) {
 
 // Function to draw a cloud
 inline void drawCloud(float x, float y) {
-    const int numSegments = 20; // Number of segments for the cloud circle
+    constexpr int numSegments = 20; // Number of segments for the cloud circle
     const float cloudRadius = 30.0f; // Radius of the cloud circle
 
     glColor3ub(255, 255, 255); // White color for clouds
@@ -82,9 +82,9 @@ inline void drawCloud(float x, float y) {
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(x + 120, y); // Center of the third circle
     for (int j = 0; j <= numSegments; ++j) {
-        float angle = j * (360.0f / numSegments);
-        float cloudX = x + 120 + additionalRadius2 * cos(angle * PI / 180.0);
-        float cloudY = y + additionalRadius2 * sin(angle * PI / 180.0);
+        const float angle = j * (360.0f / numSegments);
+        const float cloudX = x + 120 + additionalRadius2 * cos(angle * PI / 180.0);
+        const float cloudY = y + additionalRadius2 * sin(angle * PI / 180.0);
         glVertex2f(cloudX, cloudY);
     }
     glEnd();
@@ -128,7 +128,7 @@ inline void drawGround(float maxXPosition) {
 }
 
 // Function to draw the ground with a different color
-inline void drawGround2(float maxXPosition) {
+inline void drawGround2(const float maxXPosition) {
     glPushMatrix(); // Save the current matrix state
     glTranslatef(0.0f, 0.0f, 0.0f); // Adjust the translation if needed
 
@@ -165,7 +165,7 @@ inline void drawGround2(float maxXPosition) {
 }
 
 // Function to draw a border around an object
-inline void drawBorder(float x1, float y1, float x2, float y2, float borderWidth) {
+inline void drawBorder(const float x1, const float y1, const float x2, const float y2, const float borderWidth) {
     glLineWidth(borderWidth); // Set the desired line width for the border
     glColor3f(0.0f, 0.0f, 0.0f); // Black color for the border
     glBegin(GL_LINE_LOOP);
@@ -177,7 +177,7 @@ inline void drawBorder(float x1, float y1, float x2, float y2, float borderWidth
 }
 
 // Function to draw lines between bricks
-inline void drawBrickLines(float minX, float minY, float maxX, float maxY, float brickWidth, float brickHeight, float lineWidth) {
+inline void drawBrickLines(const float minX, const float minY, const float maxX, const float maxY, const float brickWidth, const float brickHeight, const float lineWidth) {
     glPushMatrix(); // Save the current matrix state
     glTranslatef(0.0f, 0.0f, 0.0f); // Adjust the translation if needed
 
@@ -203,7 +203,7 @@ inline void drawBrickLines(float minX, float minY, float maxX, float maxY, float
 }
 
 // Function to draw an arch gate
-inline void drawArchGate(float x, float y, float width, float height, float r, float g, float b) {
+inline void drawArchGate(const float x, const float y, const float width, const float height, const float r, const float g, const float b) {
     glColor3f(r, g, b); // Set the color for the gate
 
     // Draw the gate using rectangles and a filled arch
@@ -216,20 +216,20 @@ inline void drawArchGate(float x, float y, float width, float height, float r, f
     glEnd();
 
     // Draw the filled arch above the gate
-    float centerX = x + width / 2.0f;
-    float centerY = y + height;
-    float radius = width / 2.0f;
+    const float centerX = x + width / 2.0f;
+    const float centerY = y + height;
+    const float radius = width / 2.0f;
 
-    const int numSegments = 100;
-    const float angleStep = 3.14159f / numSegments;
+    constexpr int numSegments = 100;
+    constexpr float angleStep = 3.14159f / numSegments;
 
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(centerX, centerY); // Center vertex of the fan
 
     for (int i = 0; i <= numSegments; ++i) {
-        float angle = i * angleStep;
-        float x1 = centerX + radius * std::cos(angle);
-        float y1 = centerY + radius * std::sin(angle);
+        const float angle = i * angleStep;
+        const float x1 = centerX + radius * std::cos(angle);
+        const float y1 = centerY + radius * std::sin(angle);
         glVertex2f(x1, y1);
     }
 
