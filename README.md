@@ -18,6 +18,14 @@ This project is a C++ game called MarioMultiverseAdventures. It uses OpenGL, GLU
 
 ---
 
+## Installing System Dependencies (Linux) 🐧
+```sh
+sudo apt-get update
+sudo apt-get install -y build-essential libxi-dev libxrandr-dev libxinerama-dev libxcursor-dev libgl1-mesa-dev libglu1-mesa-dev
+```
+
+---
+
 ## Installing Ninja Build Tools (for VSCode on Windows)  🏗️
 
 1. **Download Ninja Build Tools:**
@@ -117,31 +125,6 @@ echo $VCPKG_ROOT
 
 *   Click **Apply** and then **OK**.
 *   CLion will reload the project with the updated CMake options.
-
----
-
-### **CLion Setup with vcpkg (Alternative Method)** 🔧
-
-If you prefer a more integrated approach, you can use **CLion's Vcpkg tool window** to add and manage **vcpkg**.
-
-#### 1\. **Open the Vcpkg Tool Window** 🪟
-
-*   Go to **Main Menu** > **View** > **Tool Windows** > **Vcpkg**.
-
-#### 2\. **Add the Vcpkg Repository** ➕
-
-*   Click the **+** button to add a new **vcpkg** repository.
-*   A window named **Add Vcpkg Repository** will pop up.
-   *   Set the **Name** to `vcpkg`.
-   *   The **URL** should auto-fill as `https://github.com/microsoft/vcpkg`.
-   *   Set the **Directory** to `$HOME/.vcpkg-clion/vcpkg`.
-   *   **Add vcpkg integration to existing CMake profiles** box should be checked.
-   *   **Debug** should be checked under **Add vcpkg integration to existing CMake profiles**.
-
-#### 3\. **Confirm the Setup** ✅
-
-*   Click **OK** to finish adding the repository. CLion will automatically sync with **vcpkg** and install any required dependencies.
-
 
 ---
 
