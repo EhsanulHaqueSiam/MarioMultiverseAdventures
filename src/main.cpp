@@ -12,18 +12,20 @@
 #include "menu.h"
 #include "../include/main.h"
 
+#include "RiverGame.h"
 #include "FlappyBird.h"
 
-//Main Function
+// Main Function
 int main(int argc, char **argv) {
-    // startGame(argc, argv);
+    startRiverGame(argc, argv);
+    startFlappyGame(argc, argv);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowSize(windowFinalX, windowFinalY);
     glutCreateWindow("SUPER MARIO");
     init();
     // sound();
-    glutKeyboardFunc(handleKeyboardInput); //Set Menu Keyboard Function
+    glutKeyboardFunc(handleKeyboardInput); // Set Menu Keyboard Function
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
     glutTimerFunc(0, update, 0); // Start the character movement timer

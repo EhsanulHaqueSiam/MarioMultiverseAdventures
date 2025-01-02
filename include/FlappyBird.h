@@ -18,8 +18,8 @@
 // Game parameters
 constexpr int window_width = 800;
 constexpr int window_height = 600;
-float bird_x = 200, bird_y = 300;
-float bird_velocity = 0, bird_gravity = -0.5, bird_lift = 10.0;
+inline float bird_x = 200, bird_y = 300;
+inline float bird_velocity = 0, bird_gravity = -0.5, bird_lift = 10.0;
 inline bool is_jumping = false;
 constexpr int max_pipes = 5;
 struct Pipe {
@@ -162,7 +162,7 @@ inline void displayFlappy() {
 }
 
 // Function to handle keyboard input
-inline void keyboard(const unsigned char key, int x, int y) {
+inline void keyboardFlappy(const unsigned char key, int x, int y) {
     if (key == 27) {
         exit(0);
     }
@@ -188,7 +188,7 @@ inline void keyboard(const unsigned char key, int x, int y) {
 }
 
 // Function to handle special key input (up arrow for jumping)
-inline void special_keyboard(const int key, int x, int y) {
+inline void special_keyboardFlappy(const int key, int x, int y) {
     if (key == GLUT_KEY_UP && !game_over) {
         is_jumping = true;
     }
@@ -201,7 +201,7 @@ inline void initFlappy() {
 }
 
 // Function to start the game
-inline void startGame(int argc, char** argv) {
+inline void startFlappyGame(int argc, char** argv) {
     srand(time(0));
 
     glutInit(&argc, argv);
@@ -212,8 +212,8 @@ inline void startGame(int argc, char** argv) {
     initFlappy();
 
     glutDisplayFunc(displayFlappy);
-    glutKeyboardFunc(keyboard);
-    glutSpecialFunc(special_keyboard);
+    glutKeyboardFunc(keyboardFlappy);
+    glutSpecialFunc(special_keyboardFlappy);
     glutTimerFunc(25, updateFlappy, 0);
 
     glutMainLoop();
