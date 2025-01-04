@@ -58,9 +58,9 @@ inline void drawCloud(float x, float y) {
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(x, y); // Center of the cloud
     for (int j = 0; j <= numSegments; ++j) {
-        float angle = j * (360.0f / numSegments);
-        float cloudX = x + cloudRadius * cos(angle * PI / 180.0);
-        float cloudY = y + cloudRadius * sin(angle * PI / 180.0);
+        const float angle = j * (360.0f / numSegments);
+        const float cloudX = x + cloudRadius * cos(angle * PI / 180.0);
+        const float cloudY = y + cloudRadius * sin(angle * PI / 180.0);
         glVertex2f(cloudX, cloudY);
     }
     glEnd();

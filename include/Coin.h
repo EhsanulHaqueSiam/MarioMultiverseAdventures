@@ -27,12 +27,12 @@ public:
     [[nodiscard]] inline float getBlue() const { return blue; }
 
     // Setters for the coin properties
-    inline void setX(float newX) { x = newX; }
-    inline void setY(float newY) { y = newY; }
-    inline void setRadius(float newRadius) { radius = newRadius; }
-    inline void setRed(float newRed) { red = newRed; }
-    inline void setGreen(float newGreen) { green = newGreen; }
-    inline void setBlue(float newBlue) { blue = newBlue; }
+    inline void setX(const float newX) { x = newX; }
+    inline void setY(const float newY) { y = newY; }
+    inline void setRadius(const float newRadius) { radius = newRadius; }
+    inline void setRed(const float newRed) { red = newRed; }
+    inline void setGreen(const float newGreen) { green = newGreen; }
+    inline void setBlue(const float newBlue) { blue = newBlue; }
 
     // Function to draw the coin using OpenGL
     void draw() const;

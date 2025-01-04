@@ -17,8 +17,7 @@
 
 // Main Function
 int main(int argc, char **argv) {
-    startRiverGame(argc, argv);
-    startFlappyGame(argc, argv);
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowSize(windowFinalX, windowFinalY);
@@ -31,6 +30,8 @@ int main(int argc, char **argv) {
     glutTimerFunc(0, update, 0); // Start the character movement timer
     glutSpecialFunc(specialKeyPressed); // Set the special key callback function
     glutSpecialUpFunc(specialKeyReleased); // Set the special key release callback function
+
+
     glutMainLoop();
     return 0;
 }

@@ -9,8 +9,10 @@
 
 #include "Character.h"
 #include "Coin.h"
+#include "FlappyBird.h"
 #include "Obstacle.h"
 #include "River.h"
+#include "RiverGame.h"
 #include "StageComponents.h"
 
 inline Character playerCharacter;
@@ -87,9 +89,9 @@ inline Coin coin59(6270, 330, 20.0f, 1.0f, 0.843f, 0.0f);
 
 inline void cameraMovement() {
     // Calculate the camera's position to center the stage around the character
-    float cameraX = -(playerCharacter.getX() - windowFinalX / 2);
-    float cameraY = 0.0f; // Keep a fixed Y position for the camera
-    float cameraZ = 0.0f; // Set a suitable Z position for the camera (you can adjust this based on your scene)
+    const float cameraX = -(playerCharacter.getX() - windowFinalX / 2);
+    constexpr float cameraY = 0.0f; // Keep a fixed Y position for the camera
+    constexpr float cameraZ = 0.0f; // Set a suitable Z position for the camera (you can adjust this based on your scene)
 
     // Apply the translation transformation
     glMatrixMode(GL_MODELVIEW);
@@ -158,8 +160,8 @@ inline void drawLives(const int characterX) {
 //Update function
 inline void update(int value) {
     // Store the current character position for collision checking
-    float prevCharacterX = playerCharacter.getX();
-    float prevCharacterY = playerCharacter.getY();
+    const float prevCharacterX = playerCharacter.getX();
+    const float prevCharacterY = playerCharacter.getY();
 
 
     // if (isStage1) {
@@ -992,12 +994,15 @@ inline void exit1(int value) {
 }
 
 
+
 // Function to handle the display
 inline void display() {
     glClear(GL_COLOR_BUFFER_BIT);
 
     if (lives > 0) {
         if (isStage1) {
+            startRiverGame();
+
             // cameraMovement();
             // drawStage01();
         } else if (isStage2) {
@@ -1006,6 +1011,7 @@ inline void display() {
         } else if (isStage3) {
             // cameraMovement();
             // drawStage03();
+            startFlappyGame();
         } else {
             displayMenu();
         }
@@ -1044,7 +1050,7 @@ inline void specialKeyReleased(const int key, const int x, const int y) {
 
 // Function to set up the OpenGL environment
 inline void init() {
-    glClearColor(0.55f, 0.53f, 0.94f, 1.0f); // Set the background color to white
+    glClearColor(0.0f, 0.0, 0.0f, 1.0f); // Set the background color to white
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(0, coordinateX, 0, coordinateY); // Set the coordinate system

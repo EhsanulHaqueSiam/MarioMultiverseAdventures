@@ -4,7 +4,7 @@
 #include <GL/glut.h>
 
 // Constructor to initialize the coin
-Coin::Coin(float x, float y, float radius, float red, float green, float blue)
+Coin::Coin(const float x, const float y, const float radius, const float red, const float green, const float blue)
     : x(x), y(y), radius(radius), red(red), green(green), blue(blue), isActive(true), isCollected(false) {}
 
 // Function to draw the coin using OpenGL
@@ -45,15 +45,15 @@ void Coin::draw() const {
 
 // Function to check collision with the coin
 bool Coin::checkCollision(const Character& character) const {
-    float charLeft = character.getX();
-    float charRight = character.getX() + character.getWidth();
-    float charTop = character.getY() + character.getHeight();
-    float charBottom = character.getY();
+    const float charLeft = character.getX();
+    const float charRight = character.getX() + character.getWidth();
+    const float charTop = character.getY() + character.getHeight();
+    const float charBottom = character.getY();
 
-    float coinLeft = x - radius;
-    float coinRight = x + radius;
-    float coinTop = y + radius;
-    float coinBottom = y - radius;
+    const float coinLeft = x - radius;
+    const float coinRight = x + radius;
+    const float coinTop = y + radius;
+    const float coinBottom = y - radius;
 
     return !(charRight < coinLeft || charLeft > coinRight || charTop < coinBottom || charBottom > coinTop);
 }

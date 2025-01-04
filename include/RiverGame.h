@@ -21,38 +21,38 @@
 #include "Coin.h"
 
 // Global variables
-int border_y = 200;
-int dividor_y = 220;
-int finishLine_y = 160;
+inline int border_y = 200;
+inline int dividor_y = 220;
+inline int finishLine_y = 160;
 
-int a = 0;
-int speed = 1;
-int steerSpeed = 1;
-int temp = 0;
-int seconds = 0;
-int distance = 178; // finish-line distance
-int fuel = 178; // fuel amount
+inline int a = 0;
+inline int speed = 1;
+inline int steerSpeed = 1;
+inline int temp = 0;
+inline int seconds = 0;
+inline int distance = 178; // finish-line distance
+inline int fuel = 178; // fuel amount
 
-int game_state = 0;
+inline int game_state = 0;
 
-int lane[MAX_BOMB];
-int pos[MAX_BOMB];
-int speeds[MAX_BOMB];
-int speedsTemp[MAX_BOMB];
+inline int lane[MAX_BOMB];
+inline int pos[MAX_BOMB];
+inline int speeds[MAX_BOMB];
+inline int speedsTemp[MAX_BOMB];
 
-bool boatMoveLeft = false, boatMoveRight = false, boatMoveFast = false, boatStopped = false;
-bool reachedEnd = false, gameCompleted = false, fuelOver = false;
+inline bool boatMoveLeft = false, boatMoveRight = false, boatMoveFast = false, boatStopped = false;
+inline bool reachedEnd = false, gameCompleted = false, fuelOver = false;
 
-int boat_x = -15;
-int boat_y = -150;
-Character boat(boat_x, boat_y); // Initialize the boat character
+inline int boat_x = -15;
+inline int boat_y = -150;
+inline Character boat(boat_x, boat_y); // Initialize the boat character
 
-int fuel_x = 0;
-int fuel_y = -80;
-Coin coin(fuel_x, fuel_y, 5, 1, 1, 0); // Initialize the coin
+inline int fuel_x = 0;
+inline int fuel_y = -80;
+inline Coin coin(fuel_x, fuel_y, 5, 1, 1, 0); // Initialize the coin
 
 // Drawing functions
-void drawBoat(void) {
+inline void drawBoat() {
     glPushMatrix();
     glScalef(0.5, 0.5, 0);
     glTranslated(boat_x, boat_y, 0.0);
@@ -85,7 +85,7 @@ void drawBoat(void) {
     glPopMatrix();
 }
 
-void drawBomb(int i) {
+inline void drawBomb(const int i) {
     glPushMatrix();
     glTranslated((lane[i] - 1) * 37, pos[i], 0.0);
     switch (speeds[i]) {
@@ -93,6 +93,7 @@ void drawBomb(int i) {
         case 1: glColor3f(0.0, 1.0, 0.0); break;
         case 2: glColor3f(0.0, 1.0, 0.0); break;
         case 3: glColor3f(0.0, 1.0, 0.0); break;
+    default: ;
     }
     glRectf(-8, 12, 8, 13);
     glBegin(GL_LINE_LOOP);
@@ -115,11 +116,11 @@ void drawBomb(int i) {
     glPopMatrix();
 }
 
-void drawBorder() {
-    int i, y;
+inline void drawBorder() {
+    int i;
     glPushMatrix();
     glTranslated(60, 0, 0);
-    y = border_y + 20;
+    int y = border_y + 20;
     for (i = 0; i < 20; i++) {
         if (a == 0) {
             if (i % 2 == 0)
@@ -157,36 +158,35 @@ void drawBorder() {
     glPopMatrix();
 }
 
-void drawDivider() {
-    int i;
+inline void drawDivider() {
     int y = dividor_y + 80;
     glColor3f(0.0, 0.0, 0.0);
-    for (i = 0; i < 8; i++) {
+    for (int i = 0; i < 8; i++) {
         y -= 80;
         glRectd(22, y, 18, y - 40);
         glRectd(-18, y, -22, y - 40);
     }
 }
 
-void drawSurroundings() {
+inline void drawSurroundings() {
     glColor3f(0.71, 0.604, 0.361);
     glRectd(240, 160, 65, -160);
     glRectd(-240, 160, -65, -160);
 }
 
-void PlaceBomb() {
+inline void PlaceBomb() {
     for (int i = 0; i < MAX_BOMB; i++) {
         drawBomb(i);
     }
 }
 
-void draw_string(std::string str) {
+inline void draw_string(std::string str) {
     for (unsigned int i = 0; i < str.length(); i++) {
         glutStrokeCharacter(GLUT_STROKE_ROMAN, *(str.begin() + i));
     }
 }
 
-void drawMainMenu() {
+inline void drawMainMenu() {
     glClearColor(0.239, 0.592, 0.859, 0.0);
     glColor3f(0.0, 0.0, 0.0);
     drawBorder();
@@ -230,7 +230,7 @@ void drawMainMenu() {
     glPopMatrix();
 }
 
-void drawExitMenu() {
+inline void drawExitMenu() {
     glColor3f(1.0, 1.0, 1.0);
     glPushMatrix();
     glTranslated(0, 30, 0);
@@ -267,7 +267,7 @@ void drawExitMenu() {
     glPopMatrix();
 }
 
-void drawTime(int clock) {
+inline void drawTime(const int clock) {
     int temp = clock;
     int str[20], i = 0;
     while (temp > 0) {
@@ -281,7 +281,7 @@ void drawTime(int clock) {
     if (clock == 0) glutStrokeCharacter(GLUT_STROKE_ROMAN, '0');
 }
 
-void drawTime() {
+inline void drawTime() {
     glColor3f(1.0, 1.0, 1.0);
     glPushMatrix();
     glTranslated(-200, 90, 0);
@@ -308,7 +308,7 @@ void drawTime() {
     glPopMatrix();
 }
 
-void drawDistanceBar() {
+inline void drawDistanceBar() {
     glPushMatrix();
     glColor3f(0.0, 0.0, 0.0);
     glTranslated(-75, 40, 0);
@@ -327,7 +327,7 @@ void drawDistanceBar() {
     glPopMatrix();
 }
 
-void drawFuelBar() {
+inline void drawFuelBar() {
     glPushMatrix();
     glColor3f(0.0, 0.0, 0.0);
     glTranslated(75, 40, 0);
@@ -346,16 +346,15 @@ void drawFuelBar() {
     glPopMatrix();
 }
 
-void drawEnd() {
-    int i, j;
-    for (i = 0; i < 5; i++) {
+inline void drawEnd() {
+    for (int i = 0; i < 5; i++) {
         if (i % 2 == 0)
             glColor3f(0.0, 0.0, 0.0);
         else
             glColor3f(1.0, 1.0, 1.0);
         glPushMatrix();
         glTranslated(-55, finishLine_y + 10 * i, 0);
-        for (j = 0; j < 11; j++) {
+        for (int j = 0; j < 11; j++) {
             if (i % 2) {
                 if (j % 2 == 0)
                     glColor3f(0.0, 0.0, 0.0);
@@ -373,7 +372,7 @@ void drawEnd() {
     }
 }
 
-void fuelMessage() {
+inline void fuelMessage() {
     glPushMatrix();
     glTranslated(75, -70, 0);
     glScalef(0.1, 0.1, 0.1);
@@ -382,7 +381,7 @@ void fuelMessage() {
     glPopMatrix();
 }
 
-void drawFuel() {
+inline void drawFuel() {
     glPushMatrix();
     glTranslated(fuel_x, fuel_y, 0);
     coin.draw(); // Draw the coin
@@ -390,17 +389,17 @@ void drawFuel() {
 }
 
 // Game control functions
-void stopGame() {
+inline void stopGame() {
     speed = 0;
     steerSpeed = 0;
 }
 
-void resumeGame() {
+inline void resumeGame() {
     speed = 2;
     steerSpeed = 1;
 }
 
-void setBomb() {
+inline void setBomb() {
     for (int i = 0; i < MAX_BOMB; i++) {
         lane[i] = i;
         pos[i] = 110 + rand() % 100;
@@ -408,7 +407,7 @@ void setBomb() {
     }
 }
 
-void moveDivider() {
+inline void moveDivider() {
     dividor_y -= speed;
     if (dividor_y < 120 && distance > 0) {
         dividor_y = 200;
@@ -426,7 +425,7 @@ void moveDivider() {
     }
 }
 
-void moveBoat() {
+inline void moveBoat() {
     if (boatMoveLeft)
         boat_x -= steerSpeed;
     else if (boatMoveRight)
@@ -437,7 +436,7 @@ void moveBoat() {
     }
 }
 
-void moveBorder() {
+inline void moveBorder() {
     border_y -= speed;
     if (border_y < 160) {
         border_y = 180;
@@ -445,7 +444,7 @@ void moveBorder() {
     }
 }
 
-void moveOtherBomb() {
+inline void moveOtherBomb() {
     for (int i = 0; i < MAX_BOMB; i++) {
         pos[i] += -speed + speeds[i];
         if (pos[i] < -200 || pos[i] > 200) {
@@ -455,7 +454,7 @@ void moveOtherBomb() {
     }
 }
 
-void moveEnd() {
+inline void moveEnd() {
     if (reachedEnd)
         finishLine_y -= speed;
     if (finishLine_y < -125) {
@@ -465,7 +464,7 @@ void moveEnd() {
     }
 }
 
-void moveFuel() {
+inline void moveFuel() {
     fuel_y -= speed;
     if (fuel_y < -200) {
         fuel_y = 600 + rand() % 150;
@@ -473,7 +472,7 @@ void moveFuel() {
     }
 }
 
-int detectCollision() {
+inline int detectCollision() {
     if (game_state != 1)
         return 0;
     for (int i = 0; i < MAX_BOMB; i++) {
@@ -499,7 +498,7 @@ int detectCollision() {
     return 0;
 }
 
-void timerCock(int v) {
+inline void timerCock(int v) {
     if (boatStopped)
         stopGame();
     else
@@ -531,23 +530,25 @@ void timerCock(int v) {
 }
 
 // Input handling functions
-void keyBoardFunc(int key, int x, int y) {
+inline void keyBoardFunc(const int key, int x, int y) {
     switch (key) {
         case GLUT_KEY_LEFT: boatMoveLeft = true; boatMoveRight = false; break;
         case GLUT_KEY_RIGHT: boatMoveRight = true; boatMoveLeft = false; break;
         case GLUT_KEY_UP: boatMoveFast = true; break;
+    default: ;
     }
 }
 
-void keyboard_up_func(int k, int x, int y) {
+inline void keyboard_up_func(const int k, int x, int y) {
     switch (k) {
         case GLUT_KEY_LEFT: boatMoveLeft = false; break;
         case GLUT_KEY_RIGHT: boatMoveRight = false; break;
         case GLUT_KEY_UP: boatMoveFast = false; break;
+    default: ;
     }
 }
 
-void normalKeyBoardFunc(unsigned char key, int x, int y) {
+inline void normalKeyBoardFunc(const unsigned char key, int x, int y) {
     if (game_state == 0) {
         if (key == 13 || key == 's' || key == 'S') {
             setBomb();
@@ -575,7 +576,7 @@ void normalKeyBoardFunc(unsigned char key, int x, int y) {
 }
 
 // Main display function
-void level_1() {
+inline void level_1() {
     glClear(GL_COLOR_BUFFER_BIT);
     switch (game_state) {
         case 1:
@@ -609,14 +610,14 @@ void level_1() {
             drawExitMenu();
             drawTime();
             break;
+        default: ;
     }
     glFlush();
     glutSwapBuffers();
 }
 
 // Main function
-int startRiverGame(int argc, char *argv[]) {
-    glutInit(&argc, argv);
+inline int startRiverGame() {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowSize(800, 500);
     glutCreateWindow("Graphics Project_Souhardo");

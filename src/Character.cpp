@@ -1,10 +1,10 @@
 #include "Character.h"
 #include <GL/glut.h>
 
-Character::Character(float initialX, float initialY)
-    : x(initialX), y(initialY), speed(initialSpeed), jumpVelocity(initialVelocity), size(charSize),
-      isJumping(false), currentJumpVelocity(0.0f),
-      isDead(false), moveLeftFlag(false), moveRightFlag(false) {
+Character::Character(const float initialX, const float initialY)
+    : x(initialX), y(initialY), speed(initialSpeed), size(charSize), jumpVelocity(initialVelocity),
+      currentJumpVelocity(0.0f), isJumping(false),
+      moveLeftFlag(false), moveRightFlag(false), isDead(false) {
 }
 
 // Setters

@@ -201,10 +201,10 @@ inline void initFlappy() {
 }
 
 // Function to start the game
-inline void startFlappyGame(int argc, char** argv) {
+inline void startFlappyGame() {
     srand(time(0));
 
-    glutInit(&argc, argv);
+
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(window_width, window_height);
     glutCreateWindow("Flappy Bird in Space");
