@@ -1001,7 +1001,9 @@ inline void display() {
 
     if (lives > 0) {
         if (isStage1) {
+            glutHideWindow();
             startRiverGame();
+            glutShowWindow();
 
             // cameraMovement();
             // drawStage01();
@@ -1011,7 +1013,9 @@ inline void display() {
         } else if (isStage3) {
             // cameraMovement();
             // drawStage03();
+            glutHideWindow();
             startFlappyGame();
+            glutShowWindow();
         } else {
             displayMenu();
         }
