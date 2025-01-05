@@ -1054,7 +1054,7 @@ inline void specialKeyReleased(const int key, const int x, const int y) {
 
 // Function to set up the OpenGL environment
 inline void init() {
-    glClearColor(0.0f, 0.0, 0.0f, 1.0f); // Set the background color to white
+    glClearColor(0.239f, 0.584f, 0.639f, 1.0f); // Set the background color to white
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(0, coordinateX, 0, coordinateY); // Set the coordinate system

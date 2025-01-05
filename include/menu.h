@@ -6,7 +6,7 @@
 #include "GlobalVariables.h"
 
 // Handle keyboard inputs
-inline void handleKeyboardInput(unsigned char key, int x, int y) {
+inline void handleKeyboardInput(const unsigned char key, int x, int y) {
     switch (key) {
         case 32: // Spacebar
             isStage1 = true;
@@ -27,7 +27,7 @@ inline void handleKeyboardInput(unsigned char key, int x, int y) {
 }
 
 // Render text on screen
-inline void renderText(const std::string &text, int x, int y, void *font, float r, float g, float b) {
+inline void renderText(const std::string &text, const int x, const int y, void *font, const float r, const float g, const float b) {
     glColor3f(r, g, b);
     glRasterPos2i(x, y);
 
@@ -72,11 +72,11 @@ inline void displayMenu() {// Draw background rectangle
     renderText("Press '3' to Start Level 3", 500, 320, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
 
     // Render credits
-    renderText("Md Ehsanul Haque (22-49370-3)", 420, 160, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Aonyendo Paul Neteish (22-49421-3)", 445, 130, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Souhardo Rahman (22-49068-3)", 425, 100, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Taharat Muhammad Jabir (22-49037-3)", 410, 70, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Md Nasif Safwan (22-49041-3)", 425, 40, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Md Ehsanul Haque (22-49370-3)", 460, 160, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Aonyendo Paul Neteish (22-49421-3)", 460, 130, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Souhardo Rahman (22-49068-3)", 460, 100, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Taharat Muhammad Jabir (22-49037-3)", 460, 70, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Md Nasif Safwan (22-49041-3)", 460, 40, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
 }
 
 
