@@ -2,6 +2,7 @@
 #define CHARACTER_H
 
 #include "GlobalVariables.h"
+#include <vector>
 
 class Character {
 private:
@@ -9,6 +10,21 @@ private:
     float y;
     float speed;
     float size;
+    int currentFrame;
+    int frameCounter;
+    std::vector<void (Character::*)() const> walkFrames;
+    std::vector<void (Character::*)() const> jumpFrames;
+
+    void drawWalk1() const;
+    void drawWalk2() const;
+    void drawWalk3() const;
+    void drawWalk4() const;
+    void drawJump1() const;
+    void drawJump2() const;
+    void drawJump3() const;
+    void drawIdle() const; // New method for idle state
+
+    bool isOnGround() const; // New method to check if Mario is on the ground
 
 public:
     float jumpVelocity;
@@ -44,7 +60,7 @@ public:
     [[nodiscard]] float getWidth() const;
     [[nodiscard]] float getHeight() const;
 
-    void draw() const;
+    void draw();
     void specialKeyPressed(int key, int x, int y);
     void specialKeyReleased(int key, int x, int y);
     void moveLeft();
