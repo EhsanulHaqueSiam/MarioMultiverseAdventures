@@ -1,5 +1,15 @@
-#include "Character.h"
+#ifdef _WIN32
+#include <windows.h>
 #include <GL/glut.h>
+#elif __APPLE__
+#define GL_SILENCE_DEPRECATION
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
+
+#include "../include/Character.h"
+
 #include <iostream>
 
 

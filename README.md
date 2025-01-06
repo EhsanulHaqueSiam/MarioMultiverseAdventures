@@ -47,6 +47,24 @@ sudo apt-get install -y build-essential libxi-dev libxrandr-dev libxinerama-dev 
    ```
 ---
 
+## Installing System Dependencies (macOS) 🍎
+1. **Install Homebrew:**
+   ```sh
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+2. **Install required packages:**
+   ```sh
+   brew install cmake ninja git glew freeglut glm
+   ```
+3. **Verify Installations:**
+   ```sh
+   cmake --version
+   ninja --version
+   git --version
+   ```
+
+---
+
 ## Cloning the Repository 🌐
 1. Open a terminal or command prompt.
 2. Clone the repository recursively:
