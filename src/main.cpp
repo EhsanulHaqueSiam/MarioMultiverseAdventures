@@ -8,12 +8,10 @@
 #include <GL/glut.h> // Include GLUT header for OpenGL (for Linux)
 #endif
 
-#include "GlobalVariables.h"
-#include "menu.h"
+#include "../include/GlobalVariables.h"
+#include "../include/menu.h"
 #include "../include/main.h"
 
-#include "RiverGame.h"
-#include "FlappyBird.h"
 
 // Main Function
 int main(int argc, char **argv) {

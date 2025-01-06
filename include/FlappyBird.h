@@ -15,9 +15,9 @@
 #include <ctime>
 #include <string>
 #include "Character.h"
+#define max_pipes 5
 
 // Game parameters
-constexpr int max_pipes = 5; // Changed to constexpr
 inline int window_width = 800;
 inline int window_height = 600;
 inline float bird_x = 200, bird_y = 300;
