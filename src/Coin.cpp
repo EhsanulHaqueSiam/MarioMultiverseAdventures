@@ -1,7 +1,17 @@
 #include "Coin.h"
 
-#include <cmath>
+#ifdef _WIN32
+#include <windows.h>
 #include <GL/glut.h>
+#elif __APPLE__
+#define GL_SILENCE_DEPRECATION
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
+
+#include <cmath>
+
 
 // Constructor to initialize the coin
 Coin::Coin(const float x, const float y, const float radius, const float red, const float green, const float blue)

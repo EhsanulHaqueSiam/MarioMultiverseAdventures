@@ -8,7 +8,7 @@
 // Handle keyboard inputs
 inline void handleKeyboardInput(const unsigned char key, int x, int y) {
     switch (key) {
-        case 32: // Spacebar
+        case 32: // Space-bar
             isStage1 = true;
         break;
         case 50: // Numpad 2 key

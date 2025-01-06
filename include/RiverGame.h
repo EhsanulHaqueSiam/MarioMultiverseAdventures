@@ -1,7 +1,3 @@
-//
-// Created by heisenberg on 1/2/25.
-//
-
 #ifndef RIVERGAME_H
 #define RIVERGAME_H
 

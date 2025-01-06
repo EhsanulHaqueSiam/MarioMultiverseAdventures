@@ -1,7 +1,3 @@
-//
-// Created by heisenberg on 12/25/24.
-//
-
 #ifndef MAIN_H
 #define MAIN_H
 #include <iostream>

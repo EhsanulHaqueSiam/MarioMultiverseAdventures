@@ -1,4 +1,3 @@
-// river.h
 #ifndef RIVER_H
 #define RIVER_H
 

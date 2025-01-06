@@ -2291,53 +2291,53 @@ void Character::drawJump3() const {
 }
 
 void Character::specialKeyPressed(const int key, int x, int y) {
-    // switch (key) {
-    // case GLUT_KEY_LEFT:
-    //     moveLeftFlag = true;
-    //     break;
-    // case GLUT_KEY_RIGHT:
-    //     moveRightFlag = true;
-    //     break;
-    // case GLUT_KEY_UP:
-    //     jump();
-    //     break;
-    // default:
-    //     break;
-    // }
+    switch (key) {
+    case GLUT_KEY_LEFT:
+        moveLeftFlag = true;
+        break;
+    case GLUT_KEY_RIGHT:
+        moveRightFlag = true;
+        break;
+    case GLUT_KEY_UP:
+        jump();
+        break;
+    default:
+        break;
+    }
 }
 
 void Character::specialKeyReleased(const int key, int x, int y) {
-    // switch (key) {
-    // case GLUT_KEY_LEFT:
-    //     moveLeftFlag = false;
-    //     break;
-    // case GLUT_KEY_RIGHT:
-    //     moveRightFlag = false;
-    //     break;
-    // default:
-    //     break;
-    // }
+    switch (key) {
+    case GLUT_KEY_LEFT:
+        moveLeftFlag = false;
+        break;
+    case GLUT_KEY_RIGHT:
+        moveRightFlag = false;
+        break;
+    default:
+        break;
+    }
 }
 
 void Character::moveLeft() {
-    // x -= speed;
-    // if (x < windowInitialX) {
-    //     x = windowInitialX;
-    // }
+    x -= speed;
+    if (x < windowInitialX) {
+        x = windowInitialX;
+    }
 }
 
 void Character::moveRight() {
-    // x += speed;
-    // if (isStage1 || isStage2 || isStage3) {
-    //     if (x > 7300) {
-    //         x = 7300;
-    //     }
-    // }
+    x += speed;
+    if (isStage1 || isStage2 || isStage3) {
+        if (x > 7300) {
+            x = 7300;
+        }
+    }
 }
 
 void Character::jump() {
-    // if (!isJumping) {
-    //     isJumping = true;
-    //     currentJumpVelocity = jumpVelocity;
-    // }
+    if (!isJumping) {
+        isJumping = true;
+        currentJumpVelocity = jumpVelocity;
+    }
 }
