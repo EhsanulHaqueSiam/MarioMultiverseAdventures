@@ -4,10 +4,10 @@
 
 
 Character::Character(const float initialX, const float initialY)
-    : x(initialX), y(initialY), speed(initialSpeed), size(charSize), jumpVelocity(initialVelocity),
-      currentJumpVelocity(0.0f), isJumping(false),
-      moveLeftFlag(false), moveRightFlag(false), isDead(false),
-      currentFrame(0), frameCounter(0) {
+    : x(initialX), y(initialY), speed(initialSpeed), size(charSize), currentFrame(0),
+      frameCounter(0), jumpVelocity(initialVelocity),
+      currentJumpVelocity(0.0f), isJumping(false), moveLeftFlag(false),
+      moveRightFlag(false), isDead(false) {
     walkFrames = {&Character::drawWalk1, &Character::drawWalk2, &Character::drawWalk3, &Character::drawWalk4};
     jumpFrames = {&Character::drawJump1, &Character::drawJump2, &Character::drawJump3};
 }
