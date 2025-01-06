@@ -24,8 +24,6 @@ private:
     void drawJump3() const;
     void drawIdle() const; // New method for idle state
 
-    bool isOnGround() const; // New method to check if Mario is on the ground
-
 public:
     float jumpVelocity;
     float currentJumpVelocity;
