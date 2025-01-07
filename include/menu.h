@@ -11,6 +11,7 @@ inline Character hero (100,200);
 inline void handleKeyboardInput(const unsigned char key, int x, int y) {
     switch (key) {
         case 32: // Space-bar
+        case 49: // Numpad 1 key
             isStage1 = true;
         break;
         case 50: // Numpad 2 key
@@ -147,6 +148,8 @@ inline void displayMenu() {// Draw background rectangle
     renderTextWithSize("Adventure", 431, 470, 0.689, 0.992f, 0.737f, 0.694f);
     renderText("START NEW GAME", 520, 420, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     renderText("Press 'Space' to Start New Game", 475, 380, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Press 'Esc' to Exit", 500, 260, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Press 'Esc' to Exit", 500, 260, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     //TODO: When win go to next level
     //TODO: When lose go to game over screen
     //TODO: Press "Esc" to exit the game
