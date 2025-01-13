@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
     glutSpecialFunc(specialKeyPressed); // Set the special key callback function
     glutSpecialUpFunc(specialKeyReleased); // Set the special key release callback function
 
-
+    glutReshapeFunc([](int w, int h) { glutReshapeWindow(windowFinalX, windowFinalY); }); // Disable window resizing
     glutMainLoop();
     return 0;
 }

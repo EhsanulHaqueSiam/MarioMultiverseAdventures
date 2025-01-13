@@ -226,6 +226,8 @@ inline void startFlappyGame() {
     glutKeyboardFunc(keyboardFlappy);
     glutSpecialFunc(special_keyboardFlappy);
     glutTimerFunc(25, updateFlappy, 0);
+    glutReshapeFunc([](int w, int h) { glutReshapeWindow(window_width, window_height); }); // Disable window resizing
+
 
     glutMainLoop();
 }

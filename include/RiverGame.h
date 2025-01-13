@@ -28,6 +28,7 @@ inline int temp = 0;
 inline int seconds = 0;
 inline int distance = 178; // finish-line distance
 inline int fuel = 178; // fuel amount
+float angle = 0.0;
 
 inline int game_state = 0;
 
@@ -46,6 +47,66 @@ inline Character boat(boat_x, boat_y); // Initialize the boat character
 inline int fuel_x = 0;
 inline int fuel_y = -80;
 inline Coin coin(fuel_x, fuel_y, 5, 1, 1, 0); // Initialize the coin
+
+void updateRudder(int value) {
+    angle += 2.5; // Increment the angle for smooth rotation
+    if (angle > 360) {
+        angle -= 360;
+    }
+    glutPostRedisplay();
+    glutTimerFunc(16, updateRudder, 0); // Call update every 16 milliseconds (~60 FPS)
+}
+
+inline void drawTree(void){
+    glPushMatrix();
+    glLineWidth(3);
+    glBegin(GL_TRIANGLES);
+    glColor3f(0.0, 0.8, 0.0);
+    glVertex2f(30, 0.0);
+    glColor3f(0.0, 0.5, 0.0);
+    glVertex2f(0.0, 25);
+    glColor3f(0.0, 0.8, 0.0);
+    glVertex2f(-30, 0.0);
+    glEnd();
+    glColor3f(0.5, 0.35, 0.05);
+    glBegin(GL_POLYGON);
+    glVertex2f(-10, 0.0);
+    glVertex2f(10, 0.0);
+    glVertex2f(10, -20);
+    glVertex2f(-10, -20);
+    glEnd();
+    glPopMatrix();
+    glLineWidth(1);
+}
+
+
+inline void drawRudder(void)
+{
+    glPushMatrix();
+    glLineWidth(3);
+    glRotatef(angle, 0, 0, 1.0); // Rotate around the z-axis
+    glColor3f(0.878, 0.337, 0.129);
+    glBegin(GL_LINES);
+    glVertex2f(0.0, 0.0);
+    glVertex2f(0.0, 0.4);
+    glVertex2f(0.0, 0.0);
+    glVertex2f(0.3, 0.3);
+    glVertex2f(0.0, 0.0);
+    glVertex2f(0.4, 0.0);
+    glVertex2f(0.0, 0.0);
+    glVertex2f(0.3, -0.3);
+    glVertex2f(0.0, 0.0);
+    glVertex2f(0.0, -0.4);
+    glVertex2f(0.0, 0.0);
+    glVertex2f(-0.3, -0.3);
+    glVertex2f(0.0, 0.0);
+    glVertex2f(-0.4, 0.0);
+    glVertex2f(0.0, 0.0);
+    glVertex2f(-0.3, 0.3);
+    glEnd();
+    glPopMatrix();
+    glLineWidth(1);
+}
 
 // Drawing functions
 inline void drawBoat() {
@@ -78,6 +139,20 @@ inline void drawBoat() {
     glScalef(0.5, 0.5, 0);
     glTranslated(boat_x, boat_y, 0.0);
     boat.draw(); // Draw character on top of boat
+    glPopMatrix();
+
+    glPushMatrix();
+    glScalef(0.5, 0.5, 0); // Apply the same scaling
+    glTranslated(boat_x, boat_y-150, 0.0); // Apply the same translation
+    glScalef(30, 30, 0);
+    drawRudder();
+    glPopMatrix();
+
+    glPushMatrix();
+    glScalef(0.5, 0.5, 0); // Apply the same scaling
+    glTranslated(boat_x + 30, boat_y-150, 0.0); // Apply the same translation
+    glScalef(30, 30, 0);
+    drawRudder();
     glPopMatrix();
 }
 
@@ -574,9 +649,19 @@ inline void normalKeyBoardFunc(const unsigned char key, int x, int y) {
 // Main display function
 inline void level_1() {
     glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(0.239, 0.592, 0.859, 0.0);
+            glBegin(GL_QUADS);
+            glColor3f(0.118, 0.286, 0.678); // Dark Blue
+            glVertex2f(-240.0, -160.0);
+            glColor3f(0.118, 0.286, 0.678); // Dark Blue
+            glVertex2f(240.0, -160.0);
+            glColor3f(0.239, 0.592, 0.859); // Light Blue
+            glVertex2f(240.0, 160.0);
+            glColor3f(0.239, 0.592, 0.859); // Light Blue
+            glVertex2f(-240.0, 160.0);
+            glEnd();
     switch (game_state) {
         case 1:
-            glClearColor(0.239, 0.592, 0.859, 0.0);
             drawBorder();
             drawSurroundings();
             drawDivider();
@@ -591,7 +676,6 @@ inline void level_1() {
             drawMainMenu();
             break;
         case 2:
-            glClearColor(0.239, 0.592, 0.859, 0.0);
             drawBorder();
             drawSurroundings();
             drawDivider();
@@ -623,6 +707,8 @@ inline int startRiverGame() {
     glutSpecialFunc(keyBoardFunc);
     glutSpecialUpFunc(keyboard_up_func);
     glutKeyboardFunc(normalKeyBoardFunc);
+    glutTimerFunc(16, updateRudder, 0); // Ensure updateRudder is called
+    glutReshapeFunc([](int w, int h) { glutReshapeWindow(800, 500); }); // Disable window resizing
     glutMainLoop();
     return 0;
 }
