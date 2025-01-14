@@ -1,7 +1,8 @@
 #ifndef Menu_h
 #define Menu_h
 #include <string>
-
+#include <thread>
+#include <chrono>
 #include "StageComponents.h"
 
 #include "GlobalVariables.h"
@@ -28,7 +29,9 @@ inline void handleKeyboardInput(const unsigned char key, int x, int y) {
     }
     glutPostRedisplay(); // Request window redraw
 }
+//Character jump
 
+//Jump ends
 // Render text on screen
 inline void renderText(const std::string &text, const int x, const int y, void *font, const float r, const float g, const float b) {
     glColor3f(r, g, b);
@@ -137,6 +140,142 @@ inline void displayMenu() {// Draw background rectangle
     // glVertex2f(0.0f, 200.0f);
     // glEnd();
 
+    //Start New Game Background
+    glBegin(GL_QUADS);
+    glColor3ub(0, 42, 37);
+    glVertex2f(510.0f, 440.0f);
+    glVertex2f(510.0f, 415.0f);
+    glVertex2f(750.0f, 415.0f);
+    glVertex2f(750.0f, 440.0f);
+    glEnd();
+
+    //Start 1 game Background
+    glBegin(GL_QUADS);
+    glColor3ub(0, 42, 37);
+    glVertex2f(500.0f, 400.0f);
+    glVertex2f(500.0f, 375.0f);
+    glVertex2f(760.0f, 375.0f);
+    glVertex2f(760.0f, 400.0f);
+    glEnd();
+
+    //Start 2 game Background
+    glBegin(GL_QUADS);
+    glColor3ub(0, 42, 37);
+    glVertex2f(500.0f, 370.0f);
+    glVertex2f(500.0f, 345.0f);
+    glVertex2f(760.0f, 345.0f);
+    glVertex2f(760.0f, 370.0f);
+    glEnd();
+
+    //Start 3 game Background
+    glBegin(GL_QUADS);
+    glColor3ub(0, 42, 37);
+    glVertex2f(500.0f, 340.0f);
+    glVertex2f(500.0f, 315.0f);
+    glVertex2f(760.0f, 315.0f);
+    glVertex2f(760.0f, 340.0f);
+    glEnd();
+
+    //Exit Background
+    glBegin(GL_QUADS);
+    glColor3ub(0, 42, 37);
+    glVertex2f(530.0f, 300.0f);
+    glVertex2f(530.0f, 275.0f);
+    glVertex2f(725.0f, 275.0f);
+    glVertex2f(725.0f, 300.0f);
+    glEnd();
+
+    //Instruction Background
+    glBegin(GL_QUADS);
+    glColor3ub(0, 42, 37);
+    glVertex2f(570.0f, 265.0f);
+    glVertex2f(570.0f, 240.0f);
+    glVertex2f(690.0f, 240.0f);
+    glVertex2f(690.0f, 265.0f);
+    glEnd();
+
+    //Sound On Background
+    glBegin(GL_QUADS);
+    glColor3ub(200, 255, 255);
+    glVertex2f(440.0f, 250.0f);
+    glVertex2f(440.0f, 205.0f);
+    glVertex2f(500.0f, 205.0f);
+    glVertex2f(500.0f, 250.0f);
+    glEnd();
+
+    //Sound ON back
+    glBegin(GL_QUADS);
+    glColor3ub(0, 42, 37);
+    glVertex2f(450.0f, 230.0f);
+    glVertex2f(450.0f, 220.0f);
+    glVertex2f(460.0f, 220.0f);
+    glVertex2f(460.0f, 230.0f);
+    glEnd();
+
+    //Sound ON front
+    glBegin(GL_QUADS);
+    glColor3ub(0, 42, 37);
+    glVertex2f(460.0f, 230.0f);
+    glVertex2f(460.0f, 220.0f);
+    glVertex2f(470.0f, 210.0f);
+    glVertex2f(470.0f, 240.0f);
+    glEnd();
+
+    //Sound On line Start
+    glBegin(GL_LINES);
+    glColor3ub(0, 42, 37);
+    glVertex2f(475.0f, 230.0f);
+    glVertex2f(490.0f, 240.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glColor3ub(0, 42, 37);
+    glVertex2f(475.0f, 225.0f);
+    glVertex2f(495.0f, 225.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glColor3ub(0, 42, 37);
+    glVertex2f(475.0f, 220.0f);
+    glVertex2f(490.0f, 210.0f);
+    glEnd();
+
+    //Sound On line end
+
+    //Sound Off Background
+    glBegin(GL_QUADS);
+    glColor3ub(200, 255, 255);
+    glVertex2f(740.0f, 250.0f);
+    glVertex2f(740.0f, 205.0f);
+    glVertex2f(800.0f, 205.0f);
+    glVertex2f(800.0f, 250.0f);
+    glEnd();
+
+    //Sound Off back
+    glBegin(GL_QUADS);
+    glColor3ub(0, 42, 37);
+    glVertex2f(750.0f, 230.0f);
+    glVertex2f(750.0f, 220.0f);
+    glVertex2f(760.0f, 220.0f);
+    glVertex2f(760.0f, 230.0f);
+    glEnd();
+
+    //Sound Off front
+    glBegin(GL_QUADS);
+    glColor3ub(0, 42, 37);
+    glVertex2f(760.0f, 230.0f);
+    glVertex2f(760.0f, 220.0f);
+    glVertex2f(770.0f, 210.0f);
+    glVertex2f(770.0f, 240.0f);
+    glEnd();
+
+    //Sound OFF line
+    glLineWidth(50.0f);
+    glBegin(GL_LINES);
+    glColor3ub(0, 42, 37);
+    glVertex2f(745.0f, 210.0f);
+    glVertex2f(785.0f, 240.0f);
+    glEnd();
 
 
 
@@ -147,18 +286,21 @@ inline void displayMenu() {// Draw background rectangle
     renderTextWithSize("Mario Multiverse", 431, 555, 0.4, 0.992f, 0.737f, 0.694f);
     renderTextWithSize("Adventure", 431, 470, 0.689, 0.992f, 0.737f, 0.694f);
     renderText("START NEW GAME", 520, 420, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Press 'Space' to Start New Game", 475, 380, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Press 'Esc' to Exit", 500, 260, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Press 'Esc' to Exit", 500, 260, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Press 'Esc' to Exit", 535, 280, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Instruction", 575, 245, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    // renderText("Sound On", 535, 280, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    // renderText("Sound Off", 535, 280, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+
+    renderText("Press '1' to Start Level 1", 510, 380,GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Press '2' to Start Level 2", 510, 350,GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("Press '3' to Start Level 3", 510, 320, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     //TODO: When win go to next level
     //TODO: When lose go to game over screen
     //TODO: Press "Esc" to exit the game
     //TODO: when loose come back to main menu
     //TODO: Add description of the game
 
-    renderText("Press '1' to Start Level 1", 500, 350, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Press '2' to Start Level 2", 500, 320, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Press '3' to Start Level 3", 500, 290, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+
 
     // Render credits
     renderText("Credits:", 650, 80, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
@@ -169,6 +311,7 @@ inline void displayMenu() {// Draw background rectangle
     renderText("Taharat Muhammad Jabir (22-49037-3)", 180, 15, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     renderText("Md Nasif Safwan (22-49041-3)", 740, 15, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     hero.draw();
+
 }
 
 
