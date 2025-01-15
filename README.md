@@ -1,7 +1,7 @@
 # Mario Multiverse Adventures
 
 ## Overview
-This project is a C++ game called MarioMultiverseAdventures. It uses OpenGL, GLUT, GLEW, GLU and glm libraries. This guide will help you set up the development environment on macOS, Windows, and Linux using CLion, Xcode, Visual Studio, and VSCode.
+This project is a C++ game called **MarioMultiverseAdventures**. It uses **OpenGL**, **GLUT**, **GLEW**, **GLU**, **glm**, and **SFML** libraries. This guide will help you set up the development environment on macOS, Windows, and Linux using CLion, Xcode, Visual Studio, and VSCode.
 
 ---
 
@@ -18,16 +18,54 @@ This project is a C++ game called MarioMultiverseAdventures. It uses OpenGL, GLU
 
 ---
 
-## Installing System Dependencies (Linux) 🐧
+## Installing SFML Dependencies 🛠️
+
+### Linux 🐧
+Run the following command to install the required SFML dependencies on Linux:
+
 ```sh
 sudo apt-get update
 sudo apt-get install -y build-essential libxi-dev libxrandr-dev libxinerama-dev libxcursor-dev libgl1-mesa-dev libglu1-mesa-dev libopenal-dev libvorbis-dev libsfml-dev libasound2-dev libpulse-dev
 ```
 
+### Windows 🖥️
+1. **Download SFML:**
+   - Go to the official SFML releases page: [SFML Releases](https://www.sfml-dev.org/download.php)
+   - Download the latest version for Visual Studio or MinGW, depending on your setup.
+
+2. **Extract the Files:**
+   - Extract the downloaded archive to a directory, e.g., `C:\SFML`.
+
+3. **Set Environment Variables:**
+   - Open the Start Menu and search for "Environment Variables".
+   - Click on "Edit the system environment variables".
+   - In the System Properties window, click on the "Environment Variables" button.
+   - Edit the "Path" variable and add the path to the SFML `bin` directory, e.g., `C:\SFML\bin`.
+
+4. **Verify Installation:**
+   ```sh
+   sfml-example.exe --version
+   ```
+
+### macOS 🍎
+1. **Install Homebrew:**
+   ```sh
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+
+2. **Install SFML:**
+   ```sh
+   brew install sfml
+   ```
+
+3. **Verify Installation:**
+   ```sh
+   sfml --version
+   ```
+
 ---
 
-## Installing Ninja Build Tools (for VSCode on Windows)  🏗️
-
+## Installing Ninja Build Tools (for VSCode on Windows) 🏗️
 1. **Download Ninja Build Tools:**
    - Go to the official Ninja releases page: [Ninja Releases](https://github.com/ninja-build/ninja/releases)
    - Download the latest `ninja-win.zip` file.
@@ -45,129 +83,107 @@ sudo apt-get install -y build-essential libxi-dev libxrandr-dev libxinerama-dev 
    ```sh
    ninja --version
    ```
----
-
-## Installing System Dependencies (macOS) 🍎
-1. **Install Homebrew:**
-   ```sh
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
-2. **Install required packages:**
-   ```sh
-   brew install cmake ninja git glew freeglut glm
-   ```
-3. **Verify Installations:**
-   ```sh
-   cmake --version
-   ninja --version
-   git --version
-   ```
 
 ---
 
 ## Cloning the Repository 🌐
 1. Open a terminal or command prompt.
 2. Clone the repository recursively:
-    ```sh
-    git clone --recurse-submodules https://github.com/EhsanulHaqueSiam/MarioMultiverseAdventures.git
-    cd MarioMultiverseAdventures
-    ```
+   ```sh
+   git clone --recurse-submodules https://github.com/EhsanulHaqueSiam/MarioMultiverseAdventures.git
+   cd MarioMultiverseAdventures
+   ```
    **OR (SSH)**
-    ```sh
-    git clone --recurse-submodules git@github.com:EhsanulHaqueSiam/MarioMultiverseAdventures.git
-    cd MarioMultiverseAdventures
-    ```
+   ```sh
+   git clone --recurse-submodules git@github.com:EhsanulHaqueSiam/MarioMultiverseAdventures.git
+   cd MarioMultiverseAdventures
+   ```
 
 ---
 
 ## Setting Up vcpkg 📦
 1. **Setup vcpkg (Linux or macOS):**
-    ```sh
-    cd external/vcpkg
-    ./bootstrap-vcpkg.sh
-    ```
+   ```sh
+   cd external/vcpkg
+   ./bootstrap-vcpkg.sh
+   ```
 
    **Setup vcpkg (Windows):**
-    ```sh
-    cd external/vcpkg
-    ./bootstrap-vcpkg.bat
-    ```
+   ```sh
+   cd external/vcpkg
+   ./bootstrap-vcpkg.bat
+   ```
 
 2. **Add vcpkg to PATH:**
    - Temporary:
-    ```sh
-    export VCPKG_ROOT=$(pwd)
-    export PATH=$VCPKG_ROOT:$PATH
-    ```
+     ```sh
+     export VCPKG_ROOT=$(pwd)
+     export PATH=$VCPKG_ROOT:$PATH
+     ```
    - Permanent:
      Add `VCPKG_ROOT` to environment variables.
 
 3. **Install Dependencies:**
-    ```sh
-    cd ../..
-    vcpkg install
-    ```
+   ```sh
+   cd ../..
+   vcpkg install
+   ```
 
 ---
 
 ## IDE Setup 💻
 
 ### **CLion Setup** 🧑‍💻
-
 To set up CLion for the project with **vcpkg** integration, follow these steps:
 
-#### 1\. **Verify vcpkg Installation** 🔍
-
+#### 1. **Verify vcpkg Installation** 🔍
 Make sure **vcpkg** is installed and the `VCPKG_ROOT` environment variable is set. To verify, run:
 
 ```sh
 echo $VCPKG_ROOT
 ```
 
-#### 2\. **Open the Project in CLion** 📂
+#### 2. **Open the Project in CLion** 📂
+* Launch **CLion** and select `Open` to open the project directory.
 
-*   Launch **CLion** and select `Open` to open the project directory.
+#### 3. **Set CMake Options** ⚙️
+* Go to **File** > **Settings** > **Build, Execution, Deployment** > **CMake**.
+* Set the **CMake options** field to:
 
-#### 3\. **Set CMake Options** ⚙️
+  ```sh
+  -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
+  ```
 
-*   Go to **File** > **Settings** > **Build, Execution, Deployment** > **CMake**.
-*   Set the **CMake options** field to:
+  This configures **vcpkg** as the package manager for the project.
 
-    ```sh
-    -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
-    ```
-
-    This configures **vcpkg** as the package manager for the project.
-
-#### 4\. **Apply and Reload** 🔄
-
-*   Click **Apply** and then **OK**.
-*   CLion will reload the project with the updated CMake options.
+#### 4. **Apply and Reload** 🔄
+* Click **Apply** and then **OK**.
+* CLion will reload the project with the updated CMake options.
 
 ---
 
 ### **Xcode Setup (macOS)** 🍎
 1. Run script:
-    ```sh
-    ./scripts/generate_mac.sh
-    ```
+   ```sh
+   ./scripts/generate_mac.sh
+   ```
 2. Open the project:
-    ```sh
-    open build/MarioMultiverseAdventures.xcodeproj
-    ```
+   ```sh
+   open build/MarioMultiverseAdventures.xcodeproj
+   ```
 3. Build and run.
 
 ---
 
 ### **Visual Studio Setup (Windows)** 🖥️
 1. Run script:
-    ```bat
-    scripts\generate_windows.bat
-    ```
+   ```bat
+   scripts\generate_windows.bat
+   ```
 2. Open the solution:
-    ```sh
-    start build\MarioMultiverseAdventures.sln
-    ```
+   ```sh
+   start build\MarioMultiverseAdventures.sln
+   ```
 3. Build and run.
 
 ---
@@ -178,18 +194,19 @@ echo $VCPKG_ROOT
    - `tasks.json`
    - `launch.json`
    - `CMakePresets.json`
+
 2. Configure CMake:
-    ```sh
-    Ctrl+Shift+P -> CMake: Configure
-    ```
+   ```sh
+   Ctrl+Shift+P -> CMake: Configure
+   ```
 3. Build:
-    ```sh
-    CMake: Build
-    ```
+   ```sh
+   CMake: Build
+   ```
 4. Debug:
-    ```sh
-    Debug -> Start Debugging
-    ```
+   ```sh
+   Debug -> Start Debugging
+   ```
 
 ---
 
@@ -221,21 +238,21 @@ build\MarioMultiverseAdventures.exe
 ## Contributing 🤝
 1. Fork the repository.
 2. Create a new branch:
-    ```sh
-    git checkout -b feature-branch
-    ```
+   ```sh
+   git checkout -b feature-branch
+   ```
 3. Commit changes:
-    ```sh
-    git add .
-    git commit -m "Description of changes"
-    ```
+   ```sh
+   git add .
+   git commit -m "Description of changes"
+   ```
 4. Push changes:
-    ```sh
-    git push origin feature-branch
-    ```
+   ```sh
+   git push origin feature-branch
+   ```
 5. Submit a pull request.
 
 ---
 
-Follow these steps to set up and start developing the MarioMultiverseAdventures project on your preferred platform and IDE. 🚀
+Follow these steps to set up and start developing the **MarioMultiverseAdventures** project on your preferred platform and IDE. 🚀
 
