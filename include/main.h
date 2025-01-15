@@ -533,13 +533,6 @@ inline void display() {
     glutSwapBuffers();
 }
 
-
-// // Play Sound In The Background
-//  void sound()    {
-//      PlaySound("mario.wav", NULL,SND_ASYNC|SND_FILENAME|SND_LOOP);
-//  }
-
-
 //Function to handle key presses
 inline void specialKeyPressed(const int key, const int x, const int y) {
     playerCharacter.specialKeyPressed(key, x, y);

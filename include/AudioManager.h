@@ -5,9 +5,7 @@
 #include <unordered_map>
 #include <string>
 #include <vector>
-#include <queue>
-#include <functional>
-#include <cmath>
+#include <mutex>
 
 class AudioManager {
 public:
@@ -20,75 +18,42 @@ public:
 
     // Background Music Control
     void playBackgroundMusic(const std::string& filepath, bool loop = true);
-    void playBackgroundMusicPlaylist(const std::vector<std::string>& filepaths);
+    void playBackgroundMusicPlaylist(const std::vector<std::string>& filepaths, bool loopPlaylist = false);
+    void playNextTrackInPlaylist();
+    void playPreviousTrackInPlaylist();
     void stopBackgroundMusic();
-    void pauseBackgroundMusic();
-    void resumeBackgroundMusic();
-    void setBackgroundMusicVolume(float volume); // Adjusted to handle valid volume range
-    sf::Music::Status getBackgroundMusicStatus() const;
-    void fadeInBackgroundMusic(float targetVolume, float duration);
-    void fadeOutBackgroundMusic(float targetVolume, float duration);
+    void setBackgroundMusicVolume(float volume);
+    bool isBackgroundMusicPlaying() const;
 
     // Sound Effects Control
     void loadSoundEffect(const std::string& id, const std::string& filepath);
     void playSoundEffect(const std::string& id, float pitch = 1.0f, float relativeVolume = 100.0f);
     void stopAllSoundEffects();
-    void setSoundEffectVolume(float volume); // Adjusted to handle valid volume range
-    void setSoundEffectPosition(const std::string& id, float x, float y, float z);
-    bool isSoundEffectPlaying(const std::string& id) const;
+    bool isSoundEffectPlaying(const std::string& id);
 
     // Advanced Sound Management
     void playSoundEffectWithDelay(const std::string& id, float delay);
     void playSequentialSoundEffects(const std::vector<std::string>& ids);
-    void fadeInSoundEffect(const std::string& id, float targetVolume, float duration);
-    void fadeOutSoundEffect(const std::string& id, float duration);
-    void applyLowPassFilter(const std::string& id, float cutoffFrequency);
-    void applyHighPassFilter(const std::string& id, float cutoffFrequency);
-    void adjustPitch(const std::string& id, float pitchFactor);
-    void adjustPlaybackSpeed(const std::string& id, float speedFactor);
 
-    // Global Audio Control
-    void setGlobalVolume(float volume); // Adjusted to handle valid volume range
-    float getGlobalVolume() const;
-    void resetVolume();
+    // Global Controls
     void mute();
     void unmute();
-
-    // 3D Audio Control
-    void setListenerPosition(float x, float y, float z);
-    void setListenerDirection(float x, float y, float z);
-    void setListenerUpVector(float x, float y, float z);
-    void setSoundEffectAttenuation(const std::string& id, float attenuation);
-    void setSoundEffectMinDistance(const std::string& id, float minDistance);
-
-    // Audio State Management
-    void saveAudioState();
-    void loadAudioState();
+    bool isMuted() const;
 
 private:
     sf::Music backgroundMusic;
     std::unordered_map<std::string, sf::SoundBuffer> soundBuffers;
     std::unordered_map<std::string, sf::Sound> soundEffects;
     float globalVolume;
-    bool isMuted;
+    bool isMutedFlag;
 
     std::vector<std::string> playlist;
     std::size_t currentTrackIndex;
+    bool loopPlaylist;
 
-    std::queue<std::pair<std::string, float>> delayedSounds;
-    std::queue<std::vector<std::string>> soundEffectSequences;
+    mutable std::mutex mutex;
 
-    struct AudioState {
-        float globalVolume;
-        bool isMuted;
-        std::unordered_map<std::string, float> soundEffectVolumes;
-    } savedState;
-
-    static void loadFileToBuffer(const std::string& filepath, sf::SoundBuffer& buffer);
-    void playNextTrackInPlaylist();
-    void processDelayedSounds();
-    void processSoundEffectSequences();
-    static void applyFilter(sf::Sound& sound, const std::function<float(float)>& filterFunction);
+    void applyGlobalVolume();
 };
 
 #endif // AUDIOMANAGER_H
