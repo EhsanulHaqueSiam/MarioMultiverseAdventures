@@ -5,6 +5,7 @@
     "opengl",
     "freeglut",
     "glew",
-    "glm"
+    "glm",
+    "sfml"
   ]
 }

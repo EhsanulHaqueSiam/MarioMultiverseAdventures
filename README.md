@@ -21,7 +21,7 @@ This project is a C++ game called MarioMultiverseAdventures. It uses OpenGL, GLU
 ## Installing System Dependencies (Linux) 🐧
 ```sh
 sudo apt-get update
-sudo apt-get install -y build-essential libxi-dev libxrandr-dev libxinerama-dev libxcursor-dev libgl1-mesa-dev libglu1-mesa-dev
+sudo apt-get install -y build-essential libxi-dev libxrandr-dev libxinerama-dev libxcursor-dev libgl1-mesa-dev libglu1-mesa-dev libopenal-dev libvorbis-dev libsfml-dev libasound2-dev libpulse-dev
 ```
 
 ---

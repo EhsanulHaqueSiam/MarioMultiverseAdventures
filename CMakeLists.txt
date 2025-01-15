@@ -15,6 +15,7 @@ find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(glm CONFIG REQUIRED)
+find_package(SFML 2.5 COMPONENTS audio REQUIRED)
 
 # Include directories
 include_directories(${CMAKE_SOURCE_DIR}/include)
@@ -30,7 +31,14 @@ file(GLOB_RECURSE HEADERS ${CMAKE_SOURCE_DIR}/include/*.h)
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 # Link libraries
-target_link_libraries(${PROJECT_NAME} OpenGL::GL GLUT::GLUT OpenGL::GLU GLEW::GLEW glm::glm)
+target_link_libraries(${PROJECT_NAME}
+        OpenGL::GL
+        GLUT::GLUT
+        OpenGL::GLU
+        GLEW::GLEW
+        glm::glm
+        sfml-audio
+)
 
 # Platform-specific settings
 if(WIN32)

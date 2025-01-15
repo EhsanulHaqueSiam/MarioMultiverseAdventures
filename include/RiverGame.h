@@ -252,10 +252,13 @@ inline void PlaceBomb() {
 }
 
 inline void draw_string(std::string str) {
+    glLineWidth(3); // Set line width to make it bold
     for (unsigned int i = 0; i < str.length(); i++) {
         glutStrokeCharacter(GLUT_STROKE_ROMAN, *(str.begin() + i));
     }
+    glLineWidth(1); // Reset line width to default
 }
+
 
 inline void drawMainMenu() {
     glClearColor(0.239, 0.592, 0.859, 0.0);
@@ -277,7 +280,7 @@ inline void drawMainMenu() {
     glPopMatrix();
 
     glPushMatrix();
-    glTranslated(-20, 30, 0);
+    glTranslated(-30, 30, 0);
     glScalef(0.1, 0.1, 0.1);
     glColor3f(1.0, 1.0, 1.0);
     draw_string("START(s)");
@@ -295,7 +298,7 @@ inline void drawMainMenu() {
     glPopMatrix();
 
     glPushMatrix();
-    glTranslated(-15, -30, 0);
+    glTranslated(-25, -30, 0);
     glScalef(0.1, 0.1, 0.1);
     draw_string("EXIT(esc)");
     glPopMatrix();
@@ -314,7 +317,7 @@ inline void drawExitMenu() {
     glPopMatrix();
 
     glPushMatrix();
-    glTranslated(-25, 30, 0);
+    glTranslated(-30, 30, 0);
     glScalef(0.1, 0.1, 0.1);
     glColor3f(1.0, 1.0, 1.0);
     draw_string("RESTART(s)");
@@ -332,13 +335,14 @@ inline void drawExitMenu() {
     glPopMatrix();
 
     glPushMatrix();
-    glTranslated(-15, -30, 0);
+    glTranslated(-25, -30, 0);
     glScalef(0.1, 0.1, 0.1);
     draw_string("EXIT(esc)");
     glPopMatrix();
 }
 
 inline void drawTime(const int clock) {
+    glLineWidth(3);
     int temp = clock;
     int str[20], i = 0;
     while (temp > 0) {
@@ -350,6 +354,7 @@ inline void drawTime(const int clock) {
         glutStrokeCharacter(GLUT_STROKE_ROMAN, str[i--] + '0');
     }
     if (clock == 0) glutStrokeCharacter(GLUT_STROKE_ROMAN, '0');
+    glLineWidth(1);
 }
 
 inline void drawTime() {
@@ -365,14 +370,14 @@ inline void drawTime() {
     glPopMatrix();
 
     glPushMatrix();
-    glTranslated(-220, 85, 0);
+    glTranslated(-215, 85, 0);
     glScalef(0.1, 0.1, 0.1);
     glColor3f(1.0, 1.0, 1.0);
     draw_string("Time: ");
     glPopMatrix();
 
     glPushMatrix();
-    glTranslated(-180, 85, 0);
+    glTranslated(-170, 85, 0);
     glScalef(0.1, 0.1, 0.1);
     glColor3f(1.0, 0.0, 0.0);
     drawTime(seconds);
@@ -642,6 +647,8 @@ inline void normalKeyBoardFunc(const unsigned char key, int x, int y) {
             boat_x = 0;
         } else if (key == 27) {
             exit(0);
+        } else if (key == 'm' || key == 'M') {
+             // Navigate to main menu ------------------------------------------MAIN MENU LOGIC
         }
     }
 }
