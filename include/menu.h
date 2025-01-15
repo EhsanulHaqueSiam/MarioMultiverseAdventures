@@ -213,7 +213,6 @@ inline void displayMenu() {// Draw background rectangle
     glVertex2f(760.0f, 340.0f);
     glEnd();
 
-
     //Exit Background
     glBegin(GL_QUADS);
     glColor3ub(0, 42, 37);
