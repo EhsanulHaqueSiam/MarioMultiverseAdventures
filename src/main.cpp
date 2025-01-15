@@ -12,6 +12,8 @@
 #include "../include/menu.h"
 #include "../include/main.h"
 
+#include "AudioManager.h"
+
 
 // Main Function
 int main(int argc, char **argv) {
@@ -21,7 +23,11 @@ int main(int argc, char **argv) {
     glutInitWindowSize(windowFinalX, windowFinalY);
     glutCreateWindow("SUPER MARIO");
     init();
-    // sound();
+
+    AudioManager audioManager;
+    audioManager.playBackgroundMusic("../assets/mario.wav", true);
+    audioManager.setBackgroundMusicVolume(50.0f);
+
     glutKeyboardFunc(handleKeyboardInput); // Set Menu Keyboard Function
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
