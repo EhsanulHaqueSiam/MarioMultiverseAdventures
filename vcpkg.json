@@ -6,6 +6,7 @@
     "freeglut",
     "glew",
     "glm",
-    "sfml"
+    "sfml",
+    "sqlite3"
   ]
 }
