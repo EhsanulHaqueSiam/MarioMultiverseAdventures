@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Include vcpkg
 if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-    set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/external/vcpkg/scripts/buildsystems/vcpkg.cmake CACHE STRING "")
+    set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/external/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
 endif()
 
 # Find required packages
@@ -15,6 +15,7 @@ find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(glm CONFIG REQUIRED)
+find_package(unofficial-sqlite3 CONFIG REQUIRED)
 find_package(SFML 2.5 COMPONENTS audio system REQUIRED)
 
 # Include directories
@@ -36,6 +37,7 @@ target_link_libraries(${PROJECT_NAME}
         GLUT::GLUT
         GLEW::GLEW
         glm::glm
+        unofficial::sqlite3::sqlite3
         sfml-audio
         sfml-system
 )
@@ -77,3 +79,6 @@ set(CPACK_PACKAGE_VERSION "1.0")
 set(CPACK_GENERATOR "ZIP;TGZ")
 set(CPACK_SOURCE_GENERATOR "ZIP;TGZ")
 set(CPACK_SOURCE_IGNORE_FILES "/build/;/external/;.git/;${CPACK_SOURCE_IGNORE_FILES}")
+
+# Final message
+message(STATUS "Configuration for ${PROJECT_NAME} complete.")

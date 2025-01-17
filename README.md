@@ -1,89 +1,78 @@
 # Mario Multiverse Adventures
 
 ## Overview
-This project is a C++ game called **MarioMultiverseAdventures**. It uses **OpenGL**, **GLUT**, **GLEW**, **GLU**, **glm**, and **SFML** libraries. This guide provides detailed instructions for setting up the development environment on macOS, Windows, and Linux using CLion, Xcode, Visual Studio, and VSCode.
+This project is a C++ game called **MarioMultiverseAdventures**. It uses **OpenGL**, **GLUT**, **GLEW**, **GLU**, **glm**, **SFML**, and **SQLite** libraries. This guide provides detailed instructions for setting up the development environment on macOS, Windows, and Linux using CLion, Xcode, Visual Studio, and VSCode.
 
 ---
 
 ## Prerequisites
-
 Before you begin, ensure you have the following tools installed:
 
-- **CMake 3.16 or higher** - [Download CMake](https://cmake.org/download/)
+- **CMake 3.16 or higher**  
+  [Download CMake](https://cmake.org/download/)
+
 - **vcpkg** (for managing dependencies)
-- **Git** - [Download Git](https://git-scm.com/downloads)
+
+- **Git**  
+  [Download Git](https://git-scm.com/downloads)
+
 - **Compilers:**
    - **Windows:** MinGW or MSVC
    - **Linux:** GCC
-   - **macOS:** Clang
-   - [Setup Guide](https://code.visualstudio.com/docs/languages/cpp#_set-up-your-c-environment)
-- **Ninja Build Tools** (for VSCode) - [Download Ninja](https://github.com/ninja-build/ninja/releases)
+   - **macOS:** Clang  
+     [Setup Guide](https://code.visualstudio.com/docs/languages/cpp#_set-up-your-c-environment)
+
+- **Ninja Build Tools** (for VSCode)  
+  [Download Ninja](https://github.com/ninja-build/ninja/releases)
 
 ---
 
-## Installing SFML Dependencies
+## Installing SFML and SQLite Dependencies
 
 ### Linux 🐧
-Run the following commands to install SFML and its dependencies:
+Run the following commands to install SFML, SQLite, and other dependencies:
 
 ```sh
 sudo apt-get update
-sudo apt-get install -y build-essential libxi-dev libxrandr-dev libxinerama-dev libxcursor-dev libgl1-mesa-dev libglu1-mesa-dev libopenal-dev libvorbis-dev libsfml-dev libasound2-dev libpulse-dev libxrandr-dev libx11-dev libudev-dev libflac-dev libogg-dev libjpeg-dev libfreetype6-dev
+sudo apt-get install -y build-essential libxi-dev libxrandr-dev libxinerama-dev libxcursor-dev libgl1-mesa-dev libglu1-mesa-dev libopenal-dev libvorbis-dev libsfml-dev libasound2-dev libpulse-dev libxrandr-dev libx11-dev libudev-dev libflac-dev libogg-dev libjpeg-dev libfreetype6-dev sqlite3 libsqlite3-dev
 ```
 
 ### Windows 🖥️
-1. **Download SFML:**
-   - Visit the official SFML releases page: [SFML Releases](https://www.sfml-dev.org/download.php)
-   - Download the version compatible with Visual Studio or MinGW, depending on your setup.
 
-2. **Extract the Files:**
-   - Extract the downloaded archive to a directory, e.g., `C:\SFML`.
+1. **Download SFML:**  
+   Visit the official SFML releases page: [SFML Releases](https://www.sfml-dev.org/download.php)
+   Download the version compatible with Visual Studio or MinGW, depending on your setup.
 
-3. **Set Environment Variables:**
-   - Open the Start Menu and search for "Environment Variables".
-   - Click on "Edit the system environment variables".
-   - In the System Properties window, click on the "Environment Variables" button.
-   - Edit the "Path" variable and add the path to the SFML `bin` directory, e.g., `C:\SFML\bin`.
+2. **Download SQLite:**
+   - Visit the official SQLite downloads page: [SQLite Releases](https://www.sqlite.org/download.html)
+   - Download the precompiled binaries for Windows.
+
+3. **Extract and Set Environment Variables:**
+   - Extract both SFML and SQLite archives to directories, e.g., `C:\SFML` and `C:\SQLite`.
+   - Add paths to the `bin` directories of SFML and SQLite in the System Environment Variables under `Path`.
 
 4. **Verify Installation:**
    ```sh
    sfml-example.exe --version
+   sqlite3 --version
    ```
 
 ### macOS 🍎
+
 1. **Install Homebrew:**
    ```sh
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
-2. **Install SFML:**
+
+2. **Install SFML and SQLite:**
    ```sh
-   brew install sfml
+   brew install sfml sqlite
    ```
+
 3. **Verify Installation:**
    ```sh
    sfml --version
-   ```
-
----
-
-## Installing Ninja Build Tools (for VSCode on Windows) 🏗️
-
-1. **Download Ninja Build Tools:**
-   - Go to the official Ninja releases page: [Ninja Releases](https://github.com/ninja-build/ninja/releases)
-   - Download the latest `ninja-win.zip` file.
-
-2. **Extract the Zip File:**
-   - Extract the contents of the `ninja-win.zip` file to a directory, e.g., `C:\ninja`.
-
-3. **Add Ninja to the System PATH:**
-   - Open the Start Menu and search for "Environment Variables".
-   - Click on "Edit the system environment variables".
-   - In the System Properties window, click on the "Environment Variables" button.
-   - Edit the "Path" variable and add `C:\ninja`.
-
-4. **Verify Installation:**
-   ```sh
-   ninja --version
+   sqlite3 --version
    ```
 
 ---
@@ -96,6 +85,7 @@ sudo apt-get install -y build-essential libxi-dev libxrandr-dev libxinerama-dev 
    git clone --recurse-submodules https://github.com/EhsanulHaqueSiam/MarioMultiverseAdventures.git
    cd MarioMultiverseAdventures
    ```
+
    **OR (SSH):**
    ```sh
    git clone --recurse-submodules git@github.com:EhsanulHaqueSiam/MarioMultiverseAdventures.git
@@ -127,6 +117,7 @@ cd external/vcpkg
   export VCPKG_ROOT=$(pwd)
   export PATH=$VCPKG_ROOT:$PATH
   ```
+
 - **Permanent:**
   Add `VCPKG_ROOT` to your system environment variables.
 
@@ -134,7 +125,7 @@ cd external/vcpkg
 
 ```sh
 cd ../..
-vcpkg install
+vcpkg install sfml sqlite3
 ```
 
 ---
@@ -170,10 +161,12 @@ vcpkg install
    ```sh
    ./scripts/generate_mac.sh
    ```
+
 2. Open the project:
    ```sh
    open build/MarioMultiverseAdventures.xcodeproj
    ```
+
 3. Build and run the project.
 
 ---
@@ -184,10 +177,12 @@ vcpkg install
    ```bat
    scripts\generate_windows.bat
    ```
+
 2. Open the solution file:
    ```sh
    start build\MarioMultiverseAdventures.sln
    ```
+
 3. Build and run the project.
 
 ---

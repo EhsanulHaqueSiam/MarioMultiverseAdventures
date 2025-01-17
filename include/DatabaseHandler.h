@@ -1,4 +1,3 @@
-// include/DatabaseHandler.h
 #ifndef DATABASEHANDLER_H
 #define DATABASEHANDLER_H
 
@@ -11,9 +10,11 @@
 class DatabaseHandler {
 public:
     static DatabaseHandler& getInstance();
-    void initialize(const std::string& dbFile);
+    void initialize();
     void insertHighScore(const std::string& playerName, int score);
-    std::vector<std::pair<std::string, int>> getHighScores();
+    void deleteHighScore(int id);
+    void updateHighScore(int id, const std::string& playerName, int score);
+    std::vector<std::pair<int, std::pair<std::string, int>>> getHighScores();
 
     DatabaseHandler(const DatabaseHandler&) = delete;
     DatabaseHandler& operator=(const DatabaseHandler&) = delete;
@@ -24,6 +25,7 @@ private:
 
     void checkSQLiteError(int resultCode, const std::string& errorMessage) const;
 
+    static const std::string dbFileName;
     sqlite3* db = nullptr;
     std::mutex mutex;
 };
