@@ -15,10 +15,11 @@
 #include "StageComponents.h"
 
 // Character declaration
-Character MarioTheMan(580, 150);
+inline Character MarioTheMan(580, 150);
 
 // Main display function
-void Instruction() {
+inline void Instruction()
+{
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0.2392f, 0.5843f, 0.6392f, 1.0f);
 
@@ -168,8 +169,8 @@ void Instruction() {
 }
 
 // Main function for instruction page
-int InstructionPage() {
-
+inline int InstructionPage()
+{
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowSize(1280, 720);
     glutCreateWindow("Instruction Page");

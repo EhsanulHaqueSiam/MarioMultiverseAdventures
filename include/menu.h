@@ -31,10 +31,11 @@ inline void handleKeyboardInput(const unsigned char key, int x, int y) {
 }
 
 // Mouse click handling
-    void handleMouseClick(int button, int state, int x, int y) {
-        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+inline void handleMouseClick(const int button, const int state, const int x, int y)
+{
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
             // Convert mouse coordinates to OpenGL coordinates
-            int windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
+            const int windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
             y = windowHeight - y;
 
             // Check if the click is level-1

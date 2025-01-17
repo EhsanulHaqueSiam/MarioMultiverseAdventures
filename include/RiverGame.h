@@ -28,7 +28,7 @@ inline int temp = 0;
 inline int seconds = 0;
 inline int distance = 178; // finish-line distance
 inline int fuel = 178; // fuel amount
-float angle = 0.0;
+inline float angle = 0.0;
 
 inline int game_state = 0;
 
@@ -48,7 +48,8 @@ inline int fuel_x = 0;
 inline int fuel_y = -80;
 inline Coin coin(fuel_x, fuel_y, 5, 1, 1, 0); // Initialize the coin
 
-void updateRudder(int value) {
+inline void updateRudder(int value)
+{
     angle += 2.5; // Increment the angle for smooth rotation
     if (angle > 360) {
         angle -= 360;
@@ -57,7 +58,8 @@ void updateRudder(int value) {
     glutTimerFunc(16, updateRudder, 0); // Call update every 16 milliseconds (~60 FPS)
 }
 
-inline void drawTree(void){
+inline void drawTree()
+{
     glPushMatrix();
     glLineWidth(3);
     glBegin(GL_TRIANGLES);
@@ -80,7 +82,7 @@ inline void drawTree(void){
 }
 
 
-inline void drawRudder(void)
+inline void drawRudder()
 {
     glPushMatrix();
     glLineWidth(3);
