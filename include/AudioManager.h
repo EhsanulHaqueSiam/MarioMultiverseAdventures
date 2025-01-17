@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <mutex>
+#include <thread>
 
 class AudioManager {
 public:
@@ -29,7 +30,7 @@ public:
     void loadSoundEffect(const std::string& id, const std::string& filepath);
     void playSoundEffect(const std::string& id, float pitch = 1.0f, float relativeVolume = 100.0f);
     void stopAllSoundEffects();
-    bool isSoundEffectPlaying(const std::string& id);
+    bool isSoundEffectPlaying(const std::string& id) const;
 
     // Advanced Sound Management
     void playSoundEffectWithDelay(const std::string& id, float delay);
@@ -54,6 +55,7 @@ private:
     mutable std::mutex mutex;
 
     void applyGlobalVolume();
+    void handlePlaylistPlayback();
 };
 
 #endif // AUDIOMANAGER_H

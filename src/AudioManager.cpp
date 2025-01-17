@@ -1,6 +1,5 @@
 #include "AudioManager.h"
 #include <iostream>
-#include <thread>
 #include <SFML/System/Sleep.hpp>
 
 AudioManager::AudioManager()
@@ -31,7 +30,7 @@ void AudioManager::playBackgroundMusicPlaylist(const std::vector<std::string>& f
     playlist = filepaths;
     currentTrackIndex = 0;
     this->loopPlaylist = loopPlaylist;
-    playNextTrackInPlaylist();
+    handlePlaylistPlayback();
 }
 
 void AudioManager::playNextTrackInPlaylist() {
@@ -39,17 +38,9 @@ void AudioManager::playNextTrackInPlaylist() {
     if (playlist.empty()) return;
 
     currentTrackIndex = (currentTrackIndex + 1) % playlist.size();
-    if (currentTrackIndex == 0 && !loopPlaylist) return; // Stop if not looping
+    if (!loopPlaylist && currentTrackIndex == 0) return;
     playBackgroundMusic(playlist[currentTrackIndex], false);
-
-    std::thread([this] {
-        while (backgroundMusic.getStatus() == sf::Music::Playing) {
-            sf::sleep(sf::milliseconds(100));
-        }
-        if (!isMutedFlag) {
-            playNextTrackInPlaylist();
-        }
-    }).detach();
+    handlePlaylistPlayback();
 }
 
 void AudioManager::playPreviousTrackInPlaylist() {
@@ -58,6 +49,15 @@ void AudioManager::playPreviousTrackInPlaylist() {
 
     currentTrackIndex = (currentTrackIndex == 0) ? playlist.size() - 1 : currentTrackIndex - 1;
     playBackgroundMusic(playlist[currentTrackIndex], false);
+}
+
+void AudioManager::handlePlaylistPlayback() {
+    std::thread([this] {
+        while (backgroundMusic.getStatus() == sf::Music::Playing) {
+            sf::sleep(sf::milliseconds(100));
+        }
+        playNextTrackInPlaylist();
+    }).detach();
 }
 
 void AudioManager::stopBackgroundMusic() {
@@ -114,7 +114,7 @@ void AudioManager::stopAllSoundEffects() {
     }
 }
 
-bool AudioManager::isSoundEffectPlaying(const std::string& id) {
+bool AudioManager::isSoundEffectPlaying(const std::string& id) const {
     std::lock_guard<std::mutex> lock(mutex);
     auto it = soundEffects.find(id);
     return it != soundEffects.end() && it->second.getStatus() == sf::Sound::Playing;
