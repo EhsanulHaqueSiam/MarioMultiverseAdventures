@@ -517,6 +517,7 @@ inline void display() {
             startFlappyGame();
             glutShowWindow();
         } else {
+            glutShowWindow();
             displayMenu();
         }
     } else {

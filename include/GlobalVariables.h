@@ -15,6 +15,7 @@
 #define coordinateX 1280
 #define coordinateY 720
 #define PI 3.14159265358979323846
+#include "AudioManager.h"
 
 inline int score = 0;
 inline int lives = 1;
@@ -22,6 +23,7 @@ inline int lives = 1;
 inline bool isStage1 = false;
 inline bool isStage2 = false;
 inline bool isStage3 = false;
+
 
 
 #endif

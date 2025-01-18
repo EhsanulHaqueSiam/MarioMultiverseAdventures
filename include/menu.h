@@ -3,10 +3,13 @@
 #include <string>
 #include <thread>
 #include <chrono>
+
+#include "AudioManager.h"
 #include "StageComponents.h"
 
 #include "GlobalVariables.h"
 #include "Character.h"
+#include "InstructionPage.h"
 inline Character hero (100,200);
 // Handle keyboard inputs
 inline void handleKeyboardInput(const unsigned char key, int x, int y) {
@@ -41,26 +44,48 @@ inline void handleMouseClick(const int button, const int state, const int x, int
             // Check if the click is level-1
             if (x >= 500 && x <= 760 && y >= 375 && y <= 400) {
                 isStage1 = true;
+                isStage2 = false;
+                isStage3 = false;
                 glutPostRedisplay();
             }
             // Check if the click is level-2
             else if (x >= 500 && x <= 760 && y >= 345 && y <= 370) {
                 isStage2 = true;
+                isStage1 = false;
+                isStage3 = false;
                 glutPostRedisplay();
             }
             // Check if the click is level-3
             else if (x >= 500 && x <= 760 && y >= 315 && y <= 340) {
                 isStage3 = true;
+                isStage1 = false;
+                isStage2 = false;
                 glutPostRedisplay();
             }
             // Check if the click is Sound On
-            else if (x >= 440 && x <= 500 && y >= 205 && y <= 250) {
-                // Handle Sound On click
+            else if (x >= 440 && x <= 500 && y >= 205 && y <= 250) {    // Handle Sound On click
+
+                AudioManager::getInstance().unmute();
+
                 glutPostRedisplay();
             }
             // Check if the click is Sound Off
-            else if (x >= 740 && x <= 800 && y >= 205 && y <= 250) {
-                // Handle Sound Off click
+            else if (x >= 740 && x <= 800 && y >= 205 && y <= 250) {    // Handle Sound Off click
+
+
+                AudioManager::getInstance().mute();
+
+                glutPostRedisplay();
+            }
+            // Check if click is on Instructions
+            else if (x >= 570 && x <= 690 && y >= 240 && y <= 265) {    //Open instructions window
+
+                InstructionPage();
+                glutPostRedisplay();
+            }
+            // Check if click is on ESC
+            else if (x >= 530 && x <= 725 && y >= 275 && y <= 300) {
+                exit(0);
                 glutPostRedisplay();
             }
         }

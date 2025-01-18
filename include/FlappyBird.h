@@ -15,7 +15,7 @@
 #include <ctime>
 #include <string>
 #include "Character.h"
-#include "menu.h" // Ensure this header is included
+#include "menu.h"
 #define max_pipes 5
 
 // Game parameters
@@ -63,7 +63,7 @@ inline void updateStar(int value) {
     glutTimerFunc(16, updateStar, 0); // Call update every 16 milliseconds (~60 FPS)
 }
 
-inline void drawStar(void)
+inline void drawStar()
 {
     glPushMatrix();
     glLineWidth(3);
@@ -153,11 +153,110 @@ inline std::vector<std::string> mischievous_messages = {
     "So close! Just one more score! (Sorry, false alarm.)",
     "You’re doing great! (At making me laugh.)",
     "You’re amazing! (At being gullible!)",
-    "Keep going, you'll definitely win! (In my dreams.)"
+    "Keep going, you'll definitely win! (In my dreams.)",
+    "You’ve got this! (You don’t, but it’s fun to watch.)",
+    "The treasure is near! (It’s a participation trophy, though.)",
+    "You’re on fire! (That’s the game breaking you.)",
+    "Almost broke your record! (Your record of failure, that is.)",
+    "Keep playing, and you’ll win… eventually. (Define 'eventually.')",
+    "Success is around the corner! (A very sharp corner.)",
+    "Believe in the process! (It’s a process of losing.)",
+    "You're so close! (So close to rage-quitting.)",
+    "Every failure brings you closer to success! (But not this time.)",
+    "If frustration were a skill, you'd be a grandmaster.",
+    "I’ve seen toddlers with better reflexes.",
+    "Your controller is probably more talented than you.",
+    "It’s okay; not everyone was born to win. Just you.",
+    "Keep going! The leaderboard needs someone at the bottom.",
+    "Remember, it’s not the game; it’s you.",
+    "Retry button feeling warm yet?",
+    "You make mediocrity look effortless.",
+    "Don’t worry, even losers have a fan club. (It’s empty.)",
+    "Practice makes perfect. You must need a lot of practice.",
+    "A true sigma embraces failure—it builds character.",
+    "You lose today, but you win the war. (Eventually.)",
+    "The grind never stops—except for you, apparently.",
+    "No one remembers second place. You're way safer than that.",
+    "Mastery takes time. You've got time, right?",
+    "Don’t let the game define you. You’re already defined.",
+    "The struggle is the path. Yours just looks longer.",
+    "Winning is a mindset. Losing is your reality.",
+    "Only the strong survive. You’re testing the limits.",
+    "Keep climbing; there’s no summit for greatness.",
+    "Winners don’t complain—they win. So what are you doing?",
+    "Hustlers don’t quit. Why are you hesitating?",
+    "This game doesn’t beat you. You beat yourself.",
+    "Success is a decision. Losing is your choice.",
+    "Every second you spend losing is time wasted.",
+    "You want to be a top G? Play like it.",
+    "Life’s a game; you’re playing on easy mode and still losing.",
+    "Nobody remembers who almost made it.",
+    "Your struggle is your weakness showing itself.",
+    "This game separates the wolves from the sheep. Guess which you are?",
+    "Just a little more effort, and you’ll achieve something… small.",
+    "Every jump is a step toward enlightenment. (Or insanity.)",
+    "You’re not bad; you’re just not good either.",
+    "Every tap is a lesson. (Mostly in how to fail.)",
+    "The world isn’t watching, but I am—and it’s hilarious.",
+    "What doesn’t kill you makes you… angrier.",
+    "The struggle is real. Your skill isn’t.",
+    "You’re halfway to greatness! (Halfway to losing, too.)",
+    "Every fail is another step toward the Hall of Shame.",
+    "Greatness takes time. You’re on lifetime mode.",
+    "Retrying is a sign of hope—or denial.",
+    "You’re not bad at the game; the game is bad at you.",
+    "Your potential is limitless. Your skills, not so much.",
+    "One more loss and you’ll unlock a participation badge.",
+    "Winning isn’t everything. But for you, it’s nothing.",
+    "This is why we can’t have nice things.",
+    "The game isn’t hard; you’re just soft.",
+    "Your patience is legendary. Your performance? Not so much.",
+    "The game isn’t rigged; you are.",
+    "You’ve discovered a new skill: consistency in failure.",
+    "Every time you fail, you’re learning. (But are you, though?)",
+    "You’re unstoppable! (Mostly because you keep failing.)",
+    "Every tap is a step closer to victory! (Or another loss.)",
+    "Dream big, play small.",
+    "Your effort is inspiring. Your results, not so much.",
+    "Success is a journey. You’re still in the parking lot.",
+    "Keep trying; I’m enjoying the show.",
+    "The leaderboard is waiting… for someone else.",
+    "Don’t stop now! (Seriously, don’t stop. I’m bored.)",
+    "Progress is slow, but you’re slower.",
+    "You’re not failing; you’re just exploring creative ways to lose.",
+    "Keep going, champ. Someone has to be last.",
+    "If this were a talent show, you’d be the comedic relief.",
+    "You're giving the retry button a workout.",
+    "You miss 100% of the shots you take. Wait, that’s not right.",
+    "Success isn’t for everyone. You’re proving that.",
+    "Every fail is a story—mostly of embarrassment.",
+    "Some call it persistence; others call it stubbornness.",
+    "You’re redefining what it means to lose.",
+    "Your dedication is admirable. Your results? Not so much.",
+    "A true warrior doesn’t quit. You just keep losing.",
+    "Your persistence is inspiring. Your skill, not so much.",
+    "Failure is a stepping stone. You’re building a staircase.",
+    "You’re forging your legacy… in the Hall of Lame.",
+    "This game is your Everest. You’re still in base camp.",
+    "Legends are made, not born. But not everyone is a legend.",
+    "If effort alone won games, you’d be a champion.",
+    "Your grind is unmatched. So is your ability to lose.",
+    "There’s no shame in losing—just in losing this badly.",
+    "Greatness is calling. You’re not picking up.",
+    "You're creating history! (In the fail logs.)",
+    "Just one more try and you'll be famous! (In the blooper reels.)",
+    "You’re unstoppable! (Like a car with no brakes—straight to failure.)",
+    "You’re so close! (Close to giving up.)",
+    "Your gameplay is… unique. Let’s call it that.",
+    "You’ve unlocked a new achievement: Determined Loser.",
+    "You’re rewriting the definition of persistence.",
+    "Legends fail too… but not this much.",
+    "You’re an inspiration. (To never give up, no matter how bad you are.)",
+    "Keep going, hero. (Villains need someone to laugh at.)"
 };
 
 // Function to update the text display based on score
-inline void updateText(int score) {
+inline void updateText(const int score) {
     static int last_score = 0;
     if (score != last_score) {
         if (score % 5 == 0 && rand() % 2 == 0) { // Show a message every 5 points with a 50% chance

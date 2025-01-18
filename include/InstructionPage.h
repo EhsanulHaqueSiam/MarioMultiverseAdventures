@@ -10,12 +10,22 @@
 #else
 #include <GL/glut.h>
 #endif
-#include "menu.h"
+
 #include "Character.h"
 #include "StageComponents.h"
 
 // Character declaration
 inline Character MarioTheMan(580, 150);
+
+// Render text on screen
+inline void renderText2(const std::string &text, const int x, const int y, void *font, const float r, const float g, const float b) {
+    glColor3f(r, g, b);
+    glRasterPos2i(x, y);
+
+    for (const char c: text) {
+        glutBitmapCharacter(font, c);
+    }
+}
 
 // Main display function
 inline void Instruction()
@@ -96,7 +106,7 @@ inline void Instruction()
     drawBorder(350, 130, 890, 700, 3.0f);
 
     //Text Title
-    renderText("Mario Multiverse Adventure: Quick Guide", 410, 660, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("Mario Multiverse Adventure: Quick Guide", 410, 660, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     glBegin(GL_LINES);
     glColor3ub(255, 255, 255);
     glVertex2f(410.0f, 650.0f);
@@ -104,7 +114,7 @@ inline void Instruction()
     glEnd();
 
     //Text Stage 1
-    renderText("Stage 1: Mario's Waterway Quest", 450, 620, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("Stage 1: Mario's Waterway Quest", 450, 620, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     glBegin(GL_LINES);
     glColor3ub(255, 255, 255);
     glVertex2f(450.0f, 610.0f);
@@ -112,52 +122,52 @@ inline void Instruction()
     glEnd();
 
 
-    renderText("Controls:", 360, 580, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("> Up Arrow: Accelerate", 360, 555, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
-    renderText("> Right/Left Arrow: Steer", 360, 530, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
+    renderText2("Controls:", 360, 580, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("> Up Arrow: Accelerate", 360, 555, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
+    renderText2("> Right/Left Arrow: Steer", 360, 530, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
 
-    renderText("Tips:", 630, 580, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText(">Collect coins for fuel.", 630, 555, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
-    renderText(">Watch the Red Line for health.", 630, 530, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
+    renderText2("Tips:", 630, 580, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2(">Collect coins for fuel.", 630, 555, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
+    renderText2(">Watch the Red Line for health.", 630, 530, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
 
     //Text Stage 2
-    renderText("Stage 2: Mario's Land Escape", 470, 470, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("Stage 2: Mario's Land Escape", 470, 470, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     glBegin(GL_LINES);
     glColor3ub(255, 255, 255);
     glVertex2f(470.0f, 460.0f);
     glVertex2f(765.0f, 460.0f);
     glEnd();
 
-    renderText("Controls:", 360, 430, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("> Up Arrow: Jump", 360, 405, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
-    renderText("> Right/Left Arrow: Move", 360, 380, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
+    renderText2("Controls:", 360, 430, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("> Up Arrow: Jump", 360, 405, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
+    renderText2("> Right/Left Arrow: Move", 360, 380, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
 
-    renderText("Tips:", 630, 430, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText(">Be careful of water.", 630, 405, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
+    renderText2("Tips:", 630, 430, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2(">Be careful of water.", 630, 405, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
 
     //Text Stage 3
-    renderText("Stage 3: Mario's Cosmic Flight", 460, 320, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("Stage 3: Mario's Cosmic Flight", 460, 320, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     glBegin(GL_LINES);
     glColor3ub(255, 255, 255);
     glVertex2f(460.0f, 310.0f);
     glVertex2f(770.0f, 310.0f);
     glEnd();
 
-    renderText("Controls:", 360, 280, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("> Up Arrow: Fly up", 360, 255, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
+    renderText2("Controls:", 360, 280, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("> Up Arrow: Fly up", 360, 255, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
 
-    renderText("Tips:", 630, 280, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText(">Dodge pillars to survive.", 630, 255, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
+    renderText2("Tips:", 630, 280, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2(">Dodge pillars to survive.", 630, 255, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
 
 
     // Render credits
-    renderText("Credits:", 650, 80, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("______", 650, 79, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Md Ehsanul Haque (22-49370-3)", 15, 50, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Aonyendo Paul Neteish (22-49421-3)", 470, 50, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Souhardo Rahman (22-49068-3)", 935, 50, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Taharat Muhammad Jabir (22-49037-3)", 180, 15, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
-    renderText("Md Nasif Safwan (22-49041-3)", 740, 15, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("Credits:", 650, 80, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("______", 650, 79, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("Md Ehsanul Haque (22-49370-3)", 15, 50, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("Aonyendo Paul Neteish (22-49421-3)", 470, 50, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("Souhardo Rahman (22-49068-3)", 935, 50, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("Taharat Muhammad Jabir (22-49037-3)", 180, 15, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText2("Md Nasif Safwan (22-49041-3)", 740, 15, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
 
     MarioTheMan.draw();
 

@@ -24,9 +24,8 @@ int main(int argc, char **argv) {
     glutCreateWindow("SUPER MARIO");
     init();
 
-    AudioManager audioManager;
-    audioManager.playBackgroundMusic("../assets/mario.wav", true);
-    audioManager.setBackgroundMusicVolume(50.0f);
+    AudioManager::getInstance().playBackgroundMusic("../assets/mario.wav", true);
+    AudioManager::getInstance().setBackgroundMusicVolume(50.0f);
 
     glutKeyboardFunc(handleKeyboardInput); // Set Menu Keyboard Function
     glutDisplayFunc(display);

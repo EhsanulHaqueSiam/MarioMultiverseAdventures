@@ -2,7 +2,6 @@
 #define DATABASEHANDLER_H
 
 #include <sqlite3.h>
-#include <string>
 #include <vector>
 #include <mutex>
 #include <stdexcept>
@@ -11,10 +10,10 @@ class DatabaseHandler {
 public:
     static DatabaseHandler& getInstance();
     void initialize();
-    void insertHighScore(const std::string& playerName, int score);
+    void insertHighScore(int score);
     void deleteHighScore(int id);
-    void updateHighScore(int id, const std::string& playerName, int score);
-    std::vector<std::pair<int, std::pair<std::string, int>>> getHighScores();
+    void updateHighScore(int id, int score);
+    std::vector<std::pair<int, int>> getHighScores();
 
     DatabaseHandler(const DatabaseHandler&) = delete;
     DatabaseHandler& operator=(const DatabaseHandler&) = delete;

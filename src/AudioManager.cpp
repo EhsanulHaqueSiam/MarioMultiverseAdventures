@@ -2,6 +2,13 @@
 #include <iostream>
 #include <SFML/System/Sleep.hpp>
 
+// Get the single instance of AudioManager
+AudioManager& AudioManager::getInstance() {
+    static AudioManager instance;
+    return instance;
+}
+
+// Private constructor
 AudioManager::AudioManager()
     : globalVolume(100.0f), isMutedFlag(false), currentTrackIndex(0), loopPlaylist(false) {}
 

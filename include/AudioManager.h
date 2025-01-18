@@ -10,12 +10,8 @@
 
 class AudioManager {
 public:
-    AudioManager();
-    ~AudioManager();
-
-    // Disable copying and assignment
-    AudioManager(const AudioManager&) = delete;
-    AudioManager& operator=(const AudioManager&) = delete;
+    // Get the single instance of AudioManager
+    static AudioManager& getInstance();
 
     // Background Music Control
     void playBackgroundMusic(const std::string& filepath, bool loop = true);
@@ -42,6 +38,14 @@ public:
     bool isMuted() const;
 
 private:
+    // Private constructor to prevent instantiation
+    AudioManager();
+    ~AudioManager();
+
+    // Disable copying and assignment
+    AudioManager(const AudioManager&) = delete;
+    AudioManager& operator=(const AudioManager&) = delete;
+
     sf::Music backgroundMusic;
     std::unordered_map<std::string, sf::SoundBuffer> soundBuffers;
     std::unordered_map<std::string, sf::Sound> soundEffects;
