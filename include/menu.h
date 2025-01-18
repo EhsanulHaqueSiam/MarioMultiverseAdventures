@@ -9,6 +9,7 @@
 
 #include "GlobalVariables.h"
 #include "Character.h"
+#include "CoverPageOpenGL.h"
 #include "InstructionPage.h"
 inline Character hero (100,200);
 // Handle keyboard inputs
@@ -88,36 +89,15 @@ inline void handleMouseClick(const int button, const int state, const int x, int
                 exit(0);
                 glutPostRedisplay();
             }
+            else if (x >= 570 && x <= 690 && y >= 210 && y <= 235) {
+                CoverPageOpenGL();
+                glutPostRedisplay();
+
+            }
         }
     }
 
 
-//Character jump
-
-//Jump ends
-// Render text on screen
-inline void renderText(const std::string &text, const int x, const int y, void *font, const float r, const float g, const float b) {
-    glColor3f(r, g, b);
-    glRasterPos2i(x, y);
-
-    for (const char c: text) {
-        glutBitmapCharacter(font, c);
-    }
-}
-
-//render text with scale
-inline void renderTextWithSize(const std::string &text, const float x, const float y, const float size, const float r, const float g, const float b) {
-    glColor3f(r, g, b);          // Set text color
-    glPushMatrix();              // Save the current transformation matrix
-    glTranslatef(x, y, 0.0f);    // Move to the specified position
-    glScalef(size, size, size);  // Scale the text for desired size
-
-    for (const char c : text) {
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, c); // Use stroke font
-    }
-
-    glPopMatrix();               // Restore the transformation matrix
-}
 
 
 // Display the menu
@@ -194,14 +174,6 @@ inline void displayMenu() {// Draw background rectangle
 
     glEnd();
     drawBorder(430, 460, 830, 600, 3.0f);
-
-    // glBegin(GL_QUADS);
-    // glColor3f(0.576f, 0.627f, 0.835f);
-    // glVertex2f(0.0f, 0.0f);
-    // glVertex2f(200.0f, 0.0f);
-    // glVertex2f(200.0f, 200.0f);
-    // glVertex2f(0.0f, 200.0f);
-    // glEnd();
 
     //Start New Game Background
     glBegin(GL_QUADS);

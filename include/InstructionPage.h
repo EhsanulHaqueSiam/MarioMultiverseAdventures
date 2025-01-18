@@ -123,7 +123,7 @@ inline void Instruction() {
 
     renderText2("Tips:", 630, 580, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     renderText2(">Collect coins for fuel.", 630, 555, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
-    renderText2(">Watch the Red Line for health.", 630, 530, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
+    renderText2(">Red Line indicates finish line.", 630, 530, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
 
     // Text Stage 2
     renderText2("Stage 2: Mario's Land Escape", 470, 470, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
@@ -150,6 +150,7 @@ inline void Instruction() {
 
     renderText2("Controls:", 360, 280, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     renderText2("> Up Arrow: Fly up", 360, 255, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
+    renderText2("> Right Arrow: Dash", 360, 230, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
 
     renderText2("Tips:", 630, 280, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     renderText2(">Dodge pillars to survive.", 630, 255, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 1.0f);
@@ -163,7 +164,7 @@ inline void Instruction() {
     renderText2("Taharat Muhammad Jabir (22-49037-3)", 180, 15, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     renderText2("Md Nasif Safwan (22-49041-3)", 740, 15, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
 
-    renderText2("Press 'M' to Return Main Menu", 485, 138, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 0.01f);
+    renderText2("Press 'Esc' to Return Main Menu", 485, 138, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 0.01f);
 
     MarioTheMan.draw();
 
