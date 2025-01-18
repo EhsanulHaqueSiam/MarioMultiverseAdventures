@@ -1,4 +1,5 @@
 #include "../include/DatabaseHandler.h"
+#include <fstream>
 
 const std::string DatabaseHandler::dbFileName = "highscores.db";
 
@@ -9,18 +10,27 @@ DatabaseHandler& DatabaseHandler::getInstance() {
 
 void DatabaseHandler::initialize() {
     std::lock_guard<std::mutex> lock(mutex);
+
+    // Check if the database file exists
+    std::ifstream dbFile(dbFileName);
+    const bool dbExists = dbFile.good();
+    dbFile.close();
+
     int resultCode = sqlite3_open(dbFileName.c_str(), &db);
     checkSQLiteError(resultCode, "Can't open database");
 
-    const auto createTableSQL = "CREATE TABLE IF NOT EXISTS HighScores ("
-                                 "ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                                 "Score INTEGER NOT NULL);";
-    char* errMsg = nullptr;
-    resultCode = sqlite3_exec(db, createTableSQL, nullptr, nullptr, &errMsg);
-    if (resultCode != SQLITE_OK) {
-        std::string error = errMsg;
-        sqlite3_free(errMsg);
-        throw std::runtime_error("Can't create table: " + error);
+    if (!dbExists) {
+        // Create the table if the database file did not exist
+        const auto createTableSQL = "CREATE TABLE IF NOT EXISTS HighScores ("
+                                    "ID INTEGER PRIMARY KEY AUTOINCREMENT, "
+                                    "Score INTEGER NOT NULL);";
+        char* errMsg = nullptr;
+        resultCode = sqlite3_exec(db, createTableSQL, nullptr, nullptr, &errMsg);
+        if (resultCode != SQLITE_OK) {
+            const std::string error = errMsg;
+            sqlite3_free(errMsg);
+            throw std::runtime_error("Can't create table: " + error);
+        }
     }
 }
 

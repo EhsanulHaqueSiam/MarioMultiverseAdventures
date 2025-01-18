@@ -89,7 +89,7 @@ bool AudioManager::isBackgroundMusicPlaying() const {
 
 void AudioManager::loadSoundEffect(const std::string& id, const std::string& filepath) {
     std::lock_guard<std::mutex> lock(mutex);
-    if (soundBuffers.count(id)) {
+    if (soundBuffers.contains(id)) {
         std::cerr << "Warning: Sound effect with ID " << id << " already loaded.\n";
         return;
     }
@@ -98,7 +98,7 @@ void AudioManager::loadSoundEffect(const std::string& id, const std::string& fil
         std::cerr << "Error: Unable to load sound buffer from " << filepath << "\n";
         return;
     }
-    soundBuffers[id] = std::move(buffer);
+    soundBuffers[id] = buffer;
     soundEffects[id].setBuffer(soundBuffers[id]);
 }
 
@@ -123,7 +123,7 @@ void AudioManager::stopAllSoundEffects() {
 
 bool AudioManager::isSoundEffectPlaying(const std::string& id) const {
     std::lock_guard<std::mutex> lock(mutex);
-    auto it = soundEffects.find(id);
+    const auto it = soundEffects.find(id);
     return it != soundEffects.end() && it->second.getStatus() == sf::Sound::Playing;
 }
 

@@ -27,6 +27,9 @@ int main(int argc, char **argv) {
     AudioManager::getInstance().playBackgroundMusic("../assets/mario.wav", true);
     AudioManager::getInstance().setBackgroundMusicVolume(50.0f);
 
+    DatabaseHandler& dbHandler = DatabaseHandler::getInstance();
+    dbHandler.initialize();
+
     glutKeyboardFunc(handleKeyboardInput); // Set Menu Keyboard Function
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);

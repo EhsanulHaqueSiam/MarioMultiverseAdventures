@@ -15,6 +15,7 @@
 #include <ctime>
 #include <string>
 #include "Character.h"
+#include "DatabaseHandler.h"
 #include "menu.h"
 #define max_pipes 5
 
@@ -318,6 +319,8 @@ inline void updateFlappy(int value) {
             if (bird_x + 10 > pipes[i].x && bird_x - 10 < pipes[i].x + pipe_width) {
                 if (bird_y - 10 < pipes[i].gap_position - pipe_gap / 2 || bird_y + 10 > pipes[i].gap_position + pipe_gap / 2) {
                     game_over = true;
+                    DatabaseHandler& dbHandler = DatabaseHandler::getInstance();
+                    dbHandler.insertHighScore(scoreFlappy);
                     break;
                 }
             }
