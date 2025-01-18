@@ -11,12 +11,14 @@
 #else
 #include <GL/glut.h>
 #endif
-#include "menu.h"
-#include "Character.h"
 #include "StageComponents.h"
+#include "Character.h"
+#include "InstructionPage.h"
 static int windowWidth = 840;  // Scaled width for A4 (210 * 4)
 static int windowHeight = 1188; // Scaled height for A4 (297 * 4)
 inline Character MarioCoverPage(230,49);
+
+
 
 // Main display function
 inline void CoverPage() {
@@ -73,27 +75,27 @@ inline void CoverPage() {
     // Person 1: Aonyendo Paul Neteish
     renderText("AONYENDO PAUL NETEISH", 2, 85-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
     renderText("22-49421-3", 45, 85-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
-    renderText("25%", 85, 85-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
+    renderText("20%", 85, 85-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
 
     // Person 2: Md Ehsanul Haque
     renderText("MD EHSANUL HAQUE", 2, 77-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
     renderText("22-49370-3", 45, 77-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
-    renderText("25%", 85, 77-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
+    renderText("20%", 85, 77-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
 
     // Person 3: Souhardo Rahman
     renderText("SOUHARDO RAHMAN", 2, 69-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
     renderText("22-49068-3", 45, 69-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
-    renderText("25%", 85, 69-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
+    renderText("20%", 85, 69-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
 
     // Person 4: Nasif Safwan
     renderText("NASIF SAFWAN", 2, 61-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
     renderText("22-49041-3", 45, 61-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
-    renderText("25%", 85, 61-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
+    renderText("20%", 85, 61-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
 
     // Person 5: Taharat Muhammad Jabir
     renderText("TAHARAT MUHAMMAD JABIR", 2, 53-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
     renderText("22-49037-3", 45, 53-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
-    renderText("25%", 85, 53-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
+    renderText("20%", 85, 53-28, GLUT_BITMAP_HELVETICA_18, 0.992f, 0.737f, 0.694f);
 
 
 
@@ -142,7 +144,7 @@ inline void CoverPage() {
     glEnd();
 
     renderText("Submitted On: 20 January 2025", 34, 5, GLUT_BITMAP_TIMES_ROMAN_24, 0.992f, 0.737f, 0.694f);
-    renderText("Press 'M' to go Main Menu", 37, 1, GLUT_BITMAP_TIMES_ROMAN_24, 0.992f, 0.01f, 0.01);
+    renderText("Press 'Esc' to go Main Menu", 37, 1, GLUT_BITMAP_TIMES_ROMAN_24, 0.992f, 0.01f, 0.01);
 
 
     // Scale the character (e.g., scaling by 2x in all directions)
@@ -154,18 +156,17 @@ inline void CoverPage() {
 
     glFlush();
     glutSwapBuffers();
+
 }
 
 // Main function
-
-
 inline int CoverPageOpenGL() {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowSize(windowWidth, windowHeight);
     glutCreateWindow("Graphics Project_AONYENDO");
 
     gluOrtho2D(0.0, 105, 0.0, 150.0); // A4 dimensions centered
-
+    glutKeyboardFunc(handleKeyboardInputForInstructions); // Set the keyboard callback function
     // Use a regular function pointer
 
     glutReshapeFunc([](int, int) {

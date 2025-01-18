@@ -20,22 +20,24 @@ inline std::vector<River> rivers;
 inline Coin coin41(540, 230, 20.0f, 1.0f, 0.843f, 0.0f);
 inline Coin coin42(830, 330, 20.0f, 1.0f, 0.843f, 0.0f);
 inline Coin coin43(950, 530, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin44(1240, 190, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin45(1430, 390, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin46(1835, 540, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin47(2000, 540, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin48(2445, 190, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin49(2885, 190, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin44(1240, 490, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin45(1550, 690, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin46(1885, 540, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin47(2000, 400, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin48(2845, 190, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin49(3000, 190, 20.0f, 1.0f, 0.843f, 0.0f);
+
 inline Coin coin50(3255, 335, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin51(3670, 490, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin51(3770, 290, 20.0f, 1.0f, 0.843f, 0.0f);
 inline Coin coin52(3850, 490, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin53(4290, 440, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin54(4865, 290, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin55(5280, 490, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin56(5410, 490, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin57(5555, 490, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin58(5890, 190, 20.0f, 1.0f, 0.843f, 0.0f);
-inline Coin coin59(6270, 330, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin53(4490, 300, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin54(4865, 400, 20.0f, 1.0f, 0.843f, 0.0f);
+
+inline Coin coin55(5045, 590, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin56(5345, 690, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin57(5650, 290, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin58(5945, 670, 20.0f, 1.0f, 0.843f, 0.0f);
+inline Coin coin59(6500, 400, 20.0f, 1.0f, 0.843f, 0.0f);
 
 inline void cameraMovement() {
     // Calculate the camera's position to center the stage around the character
@@ -145,7 +147,7 @@ inline void update(int value) {
     }
 
     // Debugging output to show character X and Y position
-    std::cout << "Character X: " << playerCharacter.getX() << ", Character Y: " << playerCharacter.getY() << std::endl;
+    //std::cout << "Character X: " << playerCharacter.getX() << ", Character Y: " << playerCharacter.getY() << std::endl;
 
     // Check for collision with obstacles and handle accordingly
     if (checkAllObstacleCollisions(playerCharacter)) {
@@ -282,13 +284,12 @@ inline void drawStage02() {
     drawBorder(0, 0, 75, 100, 3.0f);
     drawBrickLines(0, 0, 75, 100, 50, 50, 3);
 
-    addRiver(75, 0, 6500, 100, 0.55f, 0.53f, 0.94f); //1st river
+    addRiver(75, 0, 6400, 100, 0.55f, 0.53f, 0.94f); //1st river
 
     addObstacle(175, 0, 100, 125, 0.69f, 0.263f, 0.043f); // 2nd piller block
     drawBorder(175, 0, 175 + 100, 125, 3.0f);
     drawBrickLines(175, 0, 175 + 100, 125, 50, 50, 3);
 
-    addRiver(275, 0, 150, 100, 0.55f, 0.53f, 0.94f); //2nd river
 
     addObstacle(425, 0, 100, 150, 0.69f, 0.263f, 0.043f); // 3rd piller block
     drawBorder(425, 0, 425 + 100, 150, 3.0f);
@@ -300,7 +301,6 @@ inline void drawStage02() {
     addObstacle(375, 150, 200, 50, 0.f, 1.0f, 0.0f); //2nd green block
     drawBorder(375, 150, 375 + 200, 150 + 50, 3.0f);
 
-    addRiver(525, 0, 300, 100, 0.55f, 0.53f, 0.94f); //3rd river
 
     addObstacle(500, 300, 75, 50, 0.f, 1.0f, 0.0f); //2nd green block
     drawBorder(500, 300, 500 + 75, 300 + 50, 3.0f);
@@ -315,7 +315,6 @@ inline void drawStage02() {
     addObstacle(750, 250, 250, 50, 0.f, 1.0f, 0.0f); //4 green block
     drawBorder(750, 250, 750 + 250, 250 + 50, 3.0f);
 
-    addRiver(925, 0, 1075, 100, 0.55f, 0.53f, 0.94f); //4 river
 
     addObstacle(1200, 400, 100, 50, 0.f, 1.0f, 0.0f); //5 green block
     drawBorder(1200, 400, 1200 + 100, 400 + 50, 3.0f);
@@ -327,7 +326,6 @@ inline void drawStage02() {
     drawBorder(2000, 0, 2000 + 100, 150, 3.0f);
     drawBrickLines(2000, 0, 2000 + 100, 150, 50, 50, 3);
 
-    addRiver(2100, 0, 300, 100, 0.55f, 0.53f, 0.94f);
 
     addObstacle(2350, 0, 50, 300, 0.69f, 0.263f, 0.043f); //6th block
     drawBorder(2350, 0, 2350 + 50, 300, 3.0f);
@@ -336,7 +334,6 @@ inline void drawStage02() {
     addObstacle(2300, 300, 150, 50, 0.f, 1.0f, 0.0f); //6th block
     drawBorder(2300, 300, 2300 + 150, 300 + 50, 3.0f);
 
-    addRiver(2400, 0, 450, 100, 0.55f, 0.53f, 0.94f);
 
     drawCloud(2700, 550);
 
@@ -349,7 +346,6 @@ inline void drawStage02() {
     drawBorder(3150, 250, 3150 + 150, 250 + 50, 3.0f);
     drawBrickLines(3150, 250 , 3150 + 150, 250 + 50, 50, 50, 3);
 
-    addRiver(3280, 0, 370, 100, 0.55f, 0.53f, 0.94f);
 
     addObstacle(3500, 300, 50, 200, 0.66f, 0.66f, 0.66f);
     drawBorder(3500, 300, 3500 + 50, 300 + 200, 3.0f);
@@ -367,7 +363,6 @@ inline void drawStage02() {
     drawBorder(4000, 400,  4000+ 50, 400 + 50, 3.0f);
     drawBrickLines(4000, 400, 4000 + 50, 400 + 50, 50, 50, 3);
 
-    // addRiver(3850, 0, 950, 100, 0.55f, 0.53f, 0.94f);
 
     addObstacle(4200, 350, 50, 50, 0.66f, 0.66f, 0.66f); //floating  block
     drawBorder(4200, 350, 4200 + 50, 350 + 50, 3.0f);
@@ -391,14 +386,12 @@ inline void drawStage02() {
     drawBorder(4805, 0, 4805 + 85, 300, 3);
 
 
-    addRiver(4950, 0, 300, 100, 0.55f, 0.53f, 0.94f);
 
     addObstacle(5000, 500, 95, 42, 0.59f, 0.863f, 0.039f);
     drawBorder(5000, 500, 5000 + 95, 500 + 42, 3);
     addObstacle(5005, 0, 85, 500, 0.59f, 0.863f, 0.039f);
     drawBorder(5005, 0, 5005 + 85,  500, 3);
 
-    addRiver(5600, 0, 250, 0, 0.55f, 0.53f, 0.94f);
 
     addObstacle(5300, 600, 95, 42, 0.59f, 0.863f, 0.039f);
     drawBorder(5300, 600, 5300 + 95, 600 + 42, 3);
@@ -410,7 +403,6 @@ inline void drawStage02() {
     addObstacle(5605, 0, 85, 200, 0.59f, 0.863f, 0.039f);
     drawBorder(5605, 0, 5605 + 85,  200, 3);
 
-    addRiver(5950, 0, 250, 100, 0.55f, 0.53f, 0.94f);
 
     addObstacle(5800, 400, 95, 42, 0.59f, 0.863f, 0.039f);
     drawBorder(5800, 400, 5800 + 95, 400 + 42, 3);
@@ -427,11 +419,10 @@ inline void drawStage02() {
     addObstacle(6105, 0, 85, 350, 0.59f, 0.863f, 0.039f);
     drawBorder(6105, 0, 6105 + 85,  350, 3);
 
-    addRiver(6350, 0, 150, 100, 0.55f, 0.53f, 0.94f);
 
     // ------------ GROUND --------------
-    addObstacle(6500, 0, 2000, 100, 0.69f, 0.263f, 0.043f);
-    drawBrickLines(6500, 0, 6450 + 2000, 100, 50, 50, 3);
+    addObstacle(6450, 0, 2000, 100, 0.69f, 0.263f, 0.043f);
+    drawBrickLines(6450, 0, 6450 + 2000, 100, 50, 50, 3);
 
     drawCloud(6500, 640);
 
