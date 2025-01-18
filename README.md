@@ -1,264 +1,145 @@
-# Mario Multiverse Adventures
+# Mario’s Multiverse Adventure 🎮
 
-## Overview
-This project is a C++ game called **MarioMultiverseAdventures**. It uses **OpenGL**, **GLUT**, **GLEW**, **GLU**, **glm**, **SFML**, and **SQLite** libraries. This guide provides detailed instructions for setting up the development environment on macOS, Windows, and Linux using CLion, Xcode, Visual Studio, and VSCode.
+## American International University-Bangladesh
+### Faculty of Science and Technology
+**Fall 2024-25**  
+**Computer Graphics**  
+**Section-F, Group-02**
 
----
+### Project Title:
+**Mario’s Multiverse Adventure**
 
-## Prerequisites
-Before you begin, ensure you have the following tools installed:
+### Submitted to:
+**MAHFUJUR RAHMAN**
 
-- **CMake 3.16 or higher**  
-  [Download CMake](https://cmake.org/download/)
-
-- **vcpkg** (for managing dependencies)
-
-- **Git**  
-  [Download Git](https://git-scm.com/downloads)
-
-- **Compilers:**
-   - **Windows:** MinGW or MSVC
-   - **Linux:** GCC
-   - **macOS:** Clang  
-     [Setup Guide](https://code.visualstudio.com/docs/languages/cpp#_set-up-your-c-environment)
-
-- **Ninja Build Tools** (for VSCode)  
-  [Download Ninja](https://github.com/ninja-build/ninja/releases)
+### Submitted by:
+| Name                   | ID           | Gmail                      |
+|------------------------|--------------|----------------------------|
+| Md. Ehsanul Haque      | 22-49370-3   | ehsanul.siamdev@gmail.com  | 
+| Taharat Muhammad Jabir | 22-49037-3   | tmjabircr@gmail.com        |
+| Aonyendo Paul Neteish  | 22-49421-3   | aonyendopaul@gmail.com     |
+| Souhardo Rahman        | 22-49068-3   | souhardo02@gmail.com       |
+| Md. Nasif Safwan       | 22-49041-3   | nasifsafwan@gmail.com      |
 
 ---
 
-## Installing SFML and SQLite Dependencies
-
-### Linux 🐧
-Run the following commands to install SFML, SQLite, and other dependencies:
-
-```sh
-sudo apt-get update
-sudo apt-get install -y build-essential libxi-dev libxrandr-dev libxinerama-dev libxcursor-dev libgl1-mesa-dev libglu1-mesa-dev libopenal-dev libvorbis-dev libsfml-dev libasound2-dev libpulse-dev libxrandr-dev libx11-dev libudev-dev libflac-dev libogg-dev libjpeg-dev libfreetype6-dev sqlite3 libsqlite3-dev
-```
-
-### Windows 🖥️
-
-1. **Download SFML:**  
-   Visit the official SFML releases page: [SFML Releases](https://www.sfml-dev.org/download.php)
-   Download the version compatible with Visual Studio or MinGW, depending on your setup.
-
-2. **Download SQLite:**
-   - Visit the official SQLite downloads page: [SQLite Releases](https://www.sqlite.org/download.html)
-   - Download the precompiled binaries for Windows.
-
-3. **Extract and Set Environment Variables:**
-   - Extract both SFML and SQLite archives to directories, e.g., `C:\SFML` and `C:\SQLite`.
-   - Add paths to the `bin` directories of SFML and SQLite in the System Environment Variables under `Path`.
-
-4. **Verify Installation:**
-   ```sh
-   sfml-example.exe --version
-   sqlite3 --version
-   ```
-
-### macOS 🍎
-
-1. **Install Homebrew:**
-   ```sh
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
-
-2. **Install SFML and SQLite:**
-   ```sh
-   brew install sfml sqlite
-   ```
-
-3. **Verify Installation:**
-   ```sh
-   sfml --version
-   sqlite3 --version
-   ```
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Literature Review](#literature-review)
+3. [Knowledge Applied Field](#knowledge-applied-field)
+4. [Key Challenges Faced During Development](#key-challenges-faced-during-development)
+5. [Screenshots](#screenshots)
+6. [Video Demo](#video-demo)
+7. [Setup Instructions](#setup-instructions)
+8. [References](#references)
 
 ---
 
-## Cloning the Repository 🌐
+## 1. Introduction
 
-1. Open a terminal or command prompt.
-2. Clone the repository recursively:
-   ```sh
-   git clone --recurse-submodules https://github.com/EhsanulHaqueSiam/MarioMultiverseAdventures.git
-   cd MarioMultiverseAdventures
-   ```
+### Overview 🌍
+_Mario’s Multiverse Adventure_ is a 2D game developed using **OpenGL** and **C++**. The game features three levels with unique challenges, showcasing mechanics like animations, physics, and audio integration.
 
-   **OR (SSH):**
-   ```sh
-   git clone --recurse-submodules git@github.com:EhsanulHaqueSiam/MarioMultiverseAdventures.git
-   cd MarioMultiverseAdventures
-   ```
+**Levels:**
+- **Level 1:** Mario’s Waterway Quest 🌊
+    - Navigate a boat through obstacles, avoid collisions, and collect coins.
+- **Level 2:** Mario’s Land Escape 🌿
+    - Jump, run, and dodge obstacles on floating platforms.
+- **Level 3:** Mario’s Cosmic Flight 🌌
+    - Fly through the skies, dodging incoming obstacles.
 
----
+### Key Features 🔧
+- **Responsive Controls:** Keyboard navigation for menus and gameplay.
+- **Dynamic Gameplay:** Collision detection, collectible coins, and time tracking.
+- **Immersive Audio:** Background music and sound effects.
+- **Data Persistence:** High scores stored using SQLite3.
 
-## Setting Up vcpkg 📦
-
-### Linux or macOS:
-
-```sh
-cd external/vcpkg
-./bootstrap-vcpkg.sh
-```
-
-### Windows:
-
-```sh
-cd external/vcpkg
-./bootstrap-vcpkg.bat
-```
-
-### Adding vcpkg to PATH:
-
-- **Temporary:**
-  ```sh
-  export VCPKG_ROOT=$(pwd)
-  export PATH=$VCPKG_ROOT:$PATH
-  ```
-
-- **Permanent:**
-  Add `VCPKG_ROOT` to your system environment variables.
-
-### Installing Dependencies:
-
-```sh
-cd ../..
-vcpkg install sfml sqlite3
-```
+### Motivation 🌟
+This project bridges theoretical knowledge and practical application in game development, focusing on:
+- Learning OpenGL tools for rendering and animation.
+- Integrating auxiliary features like audio and databases.
+- Designing engaging and visually appealing gameplay.
 
 ---
 
-## IDE Setup 💻
+## 2. Literature Review
 
-### CLion Setup 🧑‍💻
-
-1. **Verify vcpkg Installation:**
-   ```sh
-   echo $VCPKG_ROOT
-   ```
-
-2. **Open the Project in CLion:**
-   - Launch CLion and select `Open` to open the project directory.
-
-3. **Set CMake Options:**
-   - Go to **File** > **Settings** > **Build, Execution, Deployment** > **CMake**.
-   - Set the **CMake options** field to:
-     ```sh
-     -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
-     ```
-
-4. **Apply and Reload:**
-   - Click **Apply** and then **OK**.
-   - CLion will reload the project with the updated CMake options.
+### Tools and Technologies Used 📚
+- **VCPKG:** Simplified library integration (e.g., SQLite3, SFML).
+- **SFML:** Audio handling for background music.
+- **CMakeLists:** Managed builds and packaging.
+- **OpenGL & GLEW:** 2D rendering and compatibility.
+- **GLM:** Vector and matrix operations for transformations.
+- **SQLite3:** Persistent data storage for high scores.
+- **GitHub:** Version control and repository hosting.
 
 ---
 
-### Xcode Setup (macOS) 🍎
+## 3. Knowledge Applied Field
 
-1. Run the setup script:
-   ```sh
-   ./scripts/generate_mac.sh
-   ```
+### Career Opportunities 🎮
+- **Gameplay Programmer:** Expertise in game mechanics.
+- **Graphics Programmer:** Advanced rendering and animations.
+- **Engine Developer:** Understanding game logic and structure.
 
-2. Open the project:
-   ```sh
-   open build/MarioMultiverseAdventures.xcodeproj
-   ```
-
-3. Build and run the project.
+### Higher Education 🎓
+- **Advanced Graphics:** Delve into ray tracing and global illumination.
+- **HCI Research:** Design intuitive game interfaces.
 
 ---
 
-### Visual Studio Setup (Windows) 🖥️
+## 4. Key Challenges Faced During Development
 
-1. Run the setup script:
-   ```bat
-   scripts\generate_windows.bat
-   ```
-
-2. Open the solution file:
-   ```sh
-   start build\MarioMultiverseAdventures.sln
-   ```
-
-3. Build and run the project.
+- **Graphics Scaling Issues:** Standardized visuals across screens.
+- **Audio Integration:** Ensured cross-platform compatibility.
+- **Collision Mechanics:** Debugged and refined interactions.
+- **Unresolved Bugs:**
+    - Mario’s walking animation is incomplete.
+    - Sliding in Level 2 causes "moon gravity."
 
 ---
 
-### VSCode Setup 🖋️
+## 5. Screenshots 🔄
 
-1. Ensure the `.vscode` folder contains the following files:
-   - `settings.json`
-   - `tasks.json`
-   - `launch.json`
-   - `CMakePresets.json`
+**Main Menu:**
+![Main Menu](https://raw.githubusercontent.com/EhsanulHaqueSiam/MarioMultiverseAdventures/refs/heads/main/Screenshots/MainMenu.jpg)
 
-2. **Configure CMake:**
-   ```sh
-   Ctrl+Shift+P -> CMake: Configure
-   ```
+**Cover Page:**
+![Cover Page](https://raw.githubusercontent.com/EhsanulHaqueSiam/MarioMultiverseAdventures/refs/heads/main/Screenshots/CoverPage.jpg)
 
-3. **Build the Project:**
-   ```sh
-   CMake: Build
-   ```
+**Instructions:**
+![Instructions](https://raw.githubusercontent.com/EhsanulHaqueSiam/MarioMultiverseAdventures/refs/heads/main/Screenshots/Instruction.jpg)
 
-4. **Start Debugging:**
-   ```sh
-   Debug -> Start Debugging
-   ```
+**Level 1:**
+![Level 1](https://raw.githubusercontent.com/EhsanulHaqueSiam/MarioMultiverseAdventures/refs/heads/main/Screenshots/Level-1.jpg)
+
+**Level 2:**
+![Level 2](https://raw.githubusercontent.com/EhsanulHaqueSiam/MarioMultiverseAdventures/refs/heads/main/Screenshots/Level-3.jpg)
+
+**Level 3:**
+![Level 3](https://raw.githubusercontent.com/EhsanulHaqueSiam/MarioMultiverseAdventures/refs/heads/main/Screenshots/Instruction.jpg)
 
 ---
 
-## Platform-Specific Build Steps ⚙️
+## 6. Video Demo 🎥
 
-### Linux Setup 🐧
-
-```sh
-./scripts/generate_linux.sh
-cmake --build build
-./build/MarioMultiverseAdventures
-```
-
-### macOS Setup 🍎
-
-```sh
-./scripts/generate_mac.sh
-cmake --build build
-./build/MarioMultiverseAdventures
-```
-
-### Windows Setup 🖥️
-
-```sh
-scripts\generate_windows.bat
-cmake --build build
-build\MarioMultiverseAdventures.exe
-```
+**Watch the Gameplay:**
+[![Mario’s Multiverse Adventure Video](https://img.youtube.com/vi/wK7qjTRkStg/0.jpg)](https://www.youtube.com/watch?v=wK7qjTRkStg)
 
 ---
 
-## Contributing 🤝
+## 7. Setup Instructions
 
-1. **Fork the repository.**
-2. **Create a new branch:**
-   ```sh
-   git checkout -b feature-branch
-   ```
-3. **Commit your changes:**
-   ```sh
-   git add .
-   git commit -m "Description of changes"
-   ```
-4. **Push the changes:**
-   ```sh
-   git push origin feature-branch
-   ```
-5. **Submit a pull request.**
+Follow the detailed setup guide provided in [SetupProject.md](./SetupProject.md) to configure the development environment and run the project. The guide includes:
+- Required dependencies
+- Installation steps for libraries and tools
+- Build instructions
+- Common troubleshooting tips
 
 ---
 
-Follow these steps to set up and start developing the **MarioMultiverseAdventures** project on your preferred platform and IDE. 🚀
+## 8. References
+
+1. A. P. Neteish, “AIUB computer graphics project | Mario multiverse adventure with OpenGL.” [YouTube](https://www.youtube.com/watch?v=wK7qjTRkStg).
+2. EhsanulHaqueSiam, “[GitHub - EhsanulHaqueSiam/MarioMultiverseAdventures](https://github.com/EhsanulHaqueSiam/MarioMultiverseAdventures).”
 
