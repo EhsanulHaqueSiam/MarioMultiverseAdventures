@@ -258,10 +258,13 @@ inline std::vector<std::string> mischievous_messages = {
 // Function to update the text display based on score
 inline void updateText(const int score) {
     static int last_score = 0;
+    static int next_message_score = 6; // Initial value to show the first message after 6 scores
+
     if (score != last_score) {
-        if (score % 5 == 0 && rand() % 2 == 0) { // Show a message every 5 points with a 50% chance
+        if (score >= next_message_score) {
             show_text = true;
             display_text = mischievous_messages[rand() % mischievous_messages.size()];
+            next_message_score = score + (rand() % 4 + 3); // Next message after 3 to 6 scores
         } else {
             show_text = false;
         }
