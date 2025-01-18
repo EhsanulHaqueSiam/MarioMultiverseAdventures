@@ -5,6 +5,29 @@
 
 #include "GlobalVariables.h"
 
+inline void renderText(const std::string &text, const int x, const int y, void *font, const float r, const float g, const float b) {
+    glColor3f(r, g, b);
+    glRasterPos2i(x, y);
+
+    for (const char c: text) {
+        glutBitmapCharacter(font, c);
+    }
+}
+
+//render text with scale
+inline void renderTextWithSize(const std::string &text, const float x, const float y, const float size, const float r, const float g, const float b) {
+    glColor3f(r, g, b);          // Set text color
+    glPushMatrix();              // Save the current transformation matrix
+    glTranslatef(x, y, 0.0f);    // Move to the specified position
+    glScalef(size, size, size);  // Scale the text for desired size
+
+    for (const char c : text) {
+        glutStrokeCharacter(GLUT_STROKE_ROMAN, c); // Use stroke font
+    }
+
+    glPopMatrix();               // Restore the transformation matrix
+}
+
 // Function to draw a hill
 inline void drawHill(const float x, const float hillHeight, const float hillWidth) {
     glPushMatrix();
