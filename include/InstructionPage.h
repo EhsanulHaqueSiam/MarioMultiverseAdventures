@@ -15,7 +15,7 @@
 #include "StageComponents.h"
 
 // Character declaration
-inline Character MarioTheMan(580, 150);
+inline Character MarioTheMan(580, 160);
 
 // Render text on screen
 inline void renderText2(const std::string &text, const int x, const int y, void *font, const float r, const float g, const float b) {
@@ -168,6 +168,8 @@ inline void Instruction()
     renderText2("Souhardo Rahman (22-49068-3)", 935, 50, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     renderText2("Taharat Muhammad Jabir (22-49037-3)", 180, 15, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     renderText2("Md Nasif Safwan (22-49041-3)", 740, 15, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+
+    renderText2("Press 'M' to Return Main Menu", 485, 138, GLUT_BITMAP_HELVETICA_18, 1.0f, 1.0f, 0.01f);
 
     MarioTheMan.draw();
 

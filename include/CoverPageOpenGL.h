@@ -16,7 +16,7 @@
 #include "StageComponents.h"
 static int windowWidth = 840;  // Scaled width for A4 (210 * 4)
 static int windowHeight = 1188; // Scaled height for A4 (297 * 4)
-inline Character MarioTheMan (230,49);
+inline Character MarioCoverPage(230,49);
 
 // Main display function
 inline void CoverPage() {
@@ -142,12 +142,13 @@ inline void CoverPage() {
     glEnd();
 
     renderText("Submitted On: 20 January 2025", 34, 5, GLUT_BITMAP_TIMES_ROMAN_24, 0.992f, 0.737f, 0.694f);
+    renderText("Press 'M' to go Main Menu", 37, 1, GLUT_BITMAP_TIMES_ROMAN_24, 0.992f, 0.01f, 0.01);
 
 
     // Scale the character (e.g., scaling by 2x in all directions)
     glPushMatrix();  // Save the current matrix
     glScalef(0.2f, 0.2f, 0.2f);  // Scale the character by 2x on X and Y axes, no scaling on Z axis
-    MarioTheMan.draw();  // Draw the character
+    MarioCoverPage.draw();  // Draw the character
     glPopMatrix();  // Restore the original matrix
     ;
 
