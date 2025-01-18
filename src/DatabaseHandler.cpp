@@ -1,5 +1,4 @@
 #include "../include/DatabaseHandler.h"
-#include <stdexcept>
 
 const std::string DatabaseHandler::dbFileName = "highscores.db";
 
