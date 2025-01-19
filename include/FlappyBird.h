@@ -25,7 +25,7 @@ inline int window_width = 800;
 inline int window_height = 600;
 inline float bird_x = 200, bird_y = 300;
 inline Character mario (0,0);
-inline float bird_velocity = 0, bird_gravity = -0.3, bird_lift = 5.0;
+inline float bird_velocity = 0, bird_gravity = -0.355, bird_lift = 5.0;
 inline bool is_jumping = false;
 struct Pipe {
     int x;
@@ -362,7 +362,7 @@ inline void displayFlappy() {
             glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, restart_msg[i]);
         }
         glRasterPos2f(window_width / 2 - 80, window_height / 2 - 80);
-        const auto main_menu_msg = "Press M for Main Menu";
+        const auto main_menu_msg = "Press Esc to exit";
         for (int i = 0; main_menu_msg[i] != '\0'; i++) {
             glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, main_menu_msg[i]);
         }
@@ -451,7 +451,7 @@ inline void startFlappyGame() {
     glutSpecialFunc(special_keyboardFlappy);
     glutTimerFunc(25, updateFlappy, 0);
     glutTimerFunc(16, updateStar, 0); // Start the star update timer
-    glutTimerFunc(1000, updateText, 0); // Start the text update timer
+    glutTimerFunc(3000, updateText, 0); // Start the text update timer
     glutReshapeFunc([](int w, int h) { glutReshapeWindow(window_width, window_height); }); // Disable window resizing
     glutMainLoop();
 }

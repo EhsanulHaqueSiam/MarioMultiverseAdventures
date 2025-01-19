@@ -11,6 +11,7 @@
 #include "Character.h"
 #include "CoverPageOpenGL.h"
 #include "InstructionPage.h"
+#include "Highscore.h"
 inline Character hero (100,200);
 // Handle keyboard inputs
 inline void handleKeyboardInput(const unsigned char key, int x, int y) {
@@ -91,6 +92,11 @@ inline void handleMouseClick(const int button, const int state, const int x, int
             }
             else if (x >= 570 && x <= 690 && y >= 210 && y <= 235) {
                 CoverPageOpenGL();
+                glutPostRedisplay();
+
+            }
+            else if (x >= 570 && x <= 690 && y >= 180 && y <= 205) {
+                HighscorePage();
                 glutPostRedisplay();
 
             }
@@ -238,6 +244,15 @@ inline void displayMenu() {// Draw background rectangle
     glVertex2f(690.0f, 235.0f);
     glEnd();
 
+    //Highscore Page Background
+    glBegin(GL_QUADS);
+    glColor3ub(0, 42, 37);
+    glVertex2f(570.0f, 205.0f);
+    glVertex2f(570.0f, 180.0f);
+    glVertex2f(690.0f, 180.0f);
+    glVertex2f(690.0f, 205.0f);
+    glEnd();
+
     //Sound On Background
     glBegin(GL_QUADS);
     glColor3ub(200, 255, 255);
@@ -333,6 +348,7 @@ inline void displayMenu() {// Draw background rectangle
     renderText("Press 'Esc' to Exit", 535, 280, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     renderText("Instruction", 575, 245, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     renderText("Cover Page", 574, 215, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
+    renderText("HighScore", 574, 185, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     // renderText("Sound On", 535, 280, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
     // renderText("Sound Off", 535, 280, GLUT_BITMAP_TIMES_ROMAN_24, 1.0f, 1.0f, 1.0f);
 
