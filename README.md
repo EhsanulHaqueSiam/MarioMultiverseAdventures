@@ -1,5 +1,7 @@
 # Mario’s Multiverse Adventure 🎮
 
+![Main Menu](https://raw.githubusercontent.com/EhsanulHaqueSiam/MarioMultiverseAdventures/refs/heads/main/Screenshots/MainMenu.jpg)
+
 ## American International University-Bangladesh
 ### Faculty of Science and Technology
 **Fall 2024-25**  
